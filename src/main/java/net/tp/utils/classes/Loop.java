@@ -48,7 +48,6 @@ public abstract class Loop {
 	 * Returns the given value and breaks the current loop.
 	 * @param value The value to return.
 	 * @param <V> The type of the value.
-	 * @return The given value.
 	 * @see Loop#loop(Supplier)
 	 * @since 1.0.0
 	 */
@@ -97,14 +96,14 @@ public abstract class Loop {
 
 	/**
 	 * Executes the given {@link Consumer} a given number of times.
-	 * @param action The {@link Consumer} to execute.
-	 * @param times The number of times to execute the {@link Consumer}.
-	 * @apiNote
+	 *
 	 * <p>An equivalent sequence of increasing values can be produced
 	 * sequentially using a {@code for} loop as follows:
 	 * <pre>{@code
 	 *     for (int i = 0; i < times; i++) { ... }
 	 * }</pre>
+	 * @param action The {@link Consumer} to execute.
+	 * @param times The number of times to execute the {@link Consumer}.
 	 */
 	public static void loop(Consumer<Integer> action, int times) {
 		for (int i = 0; i < times; i++) requireNonNull(action).accept(i);
@@ -112,9 +111,6 @@ public abstract class Loop {
 
 	/**
 	 * Loops the given {@link Runnable} until the given condition is met.
-	 * @param condition The condition to check.
-	 * @param action The {@link Runnable} to loop.
-	 * @apiNote
 	 * <p>An equivalent sequence of increasing values can be produced
 	 * sequentially using a {@code for} loop as follows:
 	 * <pre>{@code
@@ -122,6 +118,8 @@ public abstract class Loop {
 	 *         ...
 	 *     }
 	 * }</pre>
+	 * @param condition The condition to check.
+	 * @param action The {@link Runnable} to loop.
 	 * @since 1.0.0
 	 */
 	public static void loopUntil(Supplier<Boolean> condition, Runnable action) {
@@ -130,9 +128,7 @@ public abstract class Loop {
 
 	/**
 	 * Loops the given {@link Runnable} until the given condition is met.
-	 * @param action The {@link Runnable} to loop.
-	 * @param condition The condition to check.
-	 * @apiNote
+	 *
 	 * <p>An equivalent sequence of increasing values can be produced
 	 * sequentially using a {@code for} loop as follows:
 	 * <pre>{@code
@@ -140,6 +136,8 @@ public abstract class Loop {
 	 *         ...
 	 *     } while (!condition);
 	 * }</pre>
+	 * @param action The {@link Runnable} to loop.
+	 * @param condition The condition to check.
 	 * @since 1.0.0
 	 */
 	public static void repeatUntil(Runnable action, Supplier<Boolean> condition) {
