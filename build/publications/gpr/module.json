@@ -2,8 +2,8 @@
   "formatVersion": "1.1",
   "component": {
     "group": "net.tp",
-    "module": "Utils",
-    "version": "1.0.0",
+    "module": "utils",
+    "version": "1.1.0",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -25,13 +25,13 @@
       },
       "files": [
         {
-          "name": "Utils-1.0.0.jar",
-          "url": "Utils-1.0.0.jar",
-          "size": 45635,
-          "sha512": "a487e2c183f2a0d8fe108fea97ed7905d356c8408a55b9be157db506263a12d3d7f9fea06a46220d68b48a097c3da3860dd6e1a91ac350f29856dc5a3ac3d71e",
-          "sha256": "325903040acb1e2ca02c9351c8036e8dccc5b334921c000dc1b7fffa81d3c846",
-          "sha1": "cd47d677f913ccb0f84372eef32fce07f5a6a978",
-          "md5": "d09bb844bf723978c94e87f051e6dbd6"
+          "name": "utils-1.1.0.jar",
+          "url": "utils-1.1.0.jar",
+          "size": 51748,
+          "sha512": "a9d026b3899dd419c528c6e66e6b6aa656f1f7679845be8429a0820cee585f6f2ad091d3870d34fcee1f28e9920f5ef2755f0d72c7f4f237f8b5e309e7716ef4",
+          "sha256": "37b7d9ebe64623ca51e50d6d80a74ee8da485e677fd65e53e493e1c6e2e5e1d5",
+          "sha1": "765ed623db0e41188be496d3010a424664acc288",
+          "md5": "b0d744244a35fed35695158223f25490"
         }
       ]
     },
@@ -46,13 +46,13 @@
       },
       "files": [
         {
-          "name": "Utils-1.0.0.jar",
-          "url": "Utils-1.0.0.jar",
-          "size": 45635,
-          "sha512": "a487e2c183f2a0d8fe108fea97ed7905d356c8408a55b9be157db506263a12d3d7f9fea06a46220d68b48a097c3da3860dd6e1a91ac350f29856dc5a3ac3d71e",
-          "sha256": "325903040acb1e2ca02c9351c8036e8dccc5b334921c000dc1b7fffa81d3c846",
-          "sha1": "cd47d677f913ccb0f84372eef32fce07f5a6a978",
-          "md5": "d09bb844bf723978c94e87f051e6dbd6"
+          "name": "utils-1.1.0.jar",
+          "url": "utils-1.1.0.jar",
+          "size": 51748,
+          "sha512": "a9d026b3899dd419c528c6e66e6b6aa656f1f7679845be8429a0820cee585f6f2ad091d3870d34fcee1f28e9920f5ef2755f0d72c7f4f237f8b5e309e7716ef4",
+          "sha256": "37b7d9ebe64623ca51e50d6d80a74ee8da485e677fd65e53e493e1c6e2e5e1d5",
+          "sha1": "765ed623db0e41188be496d3010a424664acc288",
+          "md5": "b0d744244a35fed35695158223f25490"
         }
       ]
     }
