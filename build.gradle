@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id("maven-publish")
 }
 
 group = 'net.tp'
@@ -7,6 +8,24 @@ version = '1.0.0'
 
 repositories {
     mavenCentral()
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/TommasoP1804/utils")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
 }
 
 dependencies {
