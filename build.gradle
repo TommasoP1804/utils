@@ -16,14 +16,17 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/TommasoP1804/utils")
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("gitHubUsername")
-                password = project.findProperty("gpr.key") ?: System.getenv("gitHubPrivateToken")
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }
     publications {
         gpr(MavenPublication) {
-            from(components.java)
+            from components.java
+            groupId = 'net.tp'
+            artifactId = 'utils'
+            version = '1.0.0'
         }
     }
 }
