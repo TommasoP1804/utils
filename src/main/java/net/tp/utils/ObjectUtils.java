@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
  * A utility class for objects.
  *
  * @author Tommaso Pastorelli
- * @version 1.0.0 (20241110T120107Z)
+ * @since 1.0.0
  */
 public abstract class ObjectUtils {
 	/**
@@ -92,5 +92,21 @@ public abstract class ObjectUtils {
 	 */
 	public static boolean sameClass(Object o1, Object o2) {
 		return requireNonNull(o1).getClass().equals(requireNonNull(o2).getClass());
+	}
+
+	/**
+	 * Checks if all the objects are equal.
+	 *
+	 * @param objects the objects to check
+	 * @return {@code true} if all the objects are equal, {@code false} otherwise
+	 * @since 1.2.0
+	 */
+	public static boolean equals(Object... objects) {
+		if (isNull(objects) || objects.length == 0) return false;
+		Object obj = objects[0];
+		for (int i = 1; i < objects.length; i++) {
+			if (!obj.equals(objects[i])) return false;
+		}
+		return true;
 	}
 }

@@ -3,14 +3,13 @@ package net.tp.utils;
 import java.util.*;
 import java.util.function.Supplier;
 
-import static java.util.Objects.isNull;
-import static java.util.Objects.requireNonNull;
+import static java.util.Objects.*;
 
 /**
  * Utility class for collections.
  *
  * @author Tommaso Pastorelli
- * @version 1.0.0 (20241110T120537Z)
+ * @since 1.0.0
  */
 public abstract class CollectionUtils {
 	/**
@@ -179,13 +178,13 @@ public abstract class CollectionUtils {
 	 *
 	 * @param a the first collection
 	 * @param b the second collection
-	 * @param <T> the type of the elements
+	 * @param <E> the type of the elements
 	 * @return the subtraction of the two collections
 	 * @since 1.0.0
 	 */
-	public static <T> Collection<T> subtract(Collection<T> a, Collection<T> b) {
-		ArrayList<T> list = new ArrayList<>(a);
-		for (T aB : requireNonNull(b)) list.remove(aB);
+	public static <E> Collection<E> subtract(Collection<E> a, Collection<E> b) {
+		ArrayList<E> list = new ArrayList<>(a);
+		for (E aB : requireNonNull(b)) list.remove(aB);
 		return list;
 	}
 
@@ -233,22 +232,65 @@ public abstract class CollectionUtils {
 		}
 	}
 
-	/**
-	 * Get the frequency of an object in a map.
-	 * @param obj the object
-	 * @param freqMap the map
-	 * @return the frequency of the object in the map
-	 * @param <E> the type of the object
-	 */
 	private static <E> int getFreq(E obj, Map<E, Integer> freqMap) {
 		try {
 			Integer o = freqMap.get(obj);
-			if (o != null) {
-				return o;
-			}
+			if (nonNull(o)) return o;
 		} catch (NoSuchElementException | NullPointerException e) {
 		}
-
 		return 0;
+	}
+
+	/**
+	 * Checks if a collection contains all the given elements.
+	 *
+	 * @param collection the collection to check
+	 * @param elements the elements to check
+	 * @param <E> the type of the elements
+	 * @return {@code true} if the collection contains all the elements, {@code false} otherwise
+	 * @since 1.2.0
+	 */
+	public static <E> boolean containsAll(Collection<E> collection, E... elements) {
+		return requireNonNull(collection).containsAll(List.of(requireNonNull(elements)));
+	}
+
+	/**
+	 * Checks if a collection contains any of the given elements.
+	 *
+	 * @param collection the collection to check
+	 * @param elements the elements to check
+	 * @param <E> the type of the elements
+	 * @return {@code true} if the collection contains any of the elements, {@code false} otherwise
+	 * @since 1.2.0
+	 */
+	@SafeVarargs
+	public static <E> boolean containsAny(Collection<E> collection, E... elements) {
+		return !intersection(collection, List.of(elements)).isEmpty();
+	}
+
+	/**
+	 * Checks if a collection contains none of the given elements.
+	 *
+	 * @param collection the collection to check
+	 * @param elements the elements to check
+	 * @param <E> the type of the elements
+	 * @return {@code true} if the collection contains none of the elements, {@code false} otherwise
+	 * @since 1.2.0
+	 */
+	public static <E> boolean containsNone(Collection<E> collection, E... elements) {
+		return intersection(collection, List.of(elements)).isEmpty();
+	}
+
+	/**
+	 * Checks if a collection contains duplicates.
+	 *
+	 * @param collection the collection to check
+	 * @param <E> the type of the elements
+	 * @return {@code true} if the collection contains duplicates, {@code false} otherwise
+	 * @since 1.2.0
+	 */
+	public static <E> boolean containsDuplicates(Collection<E> collection) {
+		if (isNull(collection)) return false;
+		return collection.size() != new HashSet<>(collection).size();
 	}
 }

@@ -13,7 +13,7 @@ import static java.util.Objects.requireNonNull;
  * @param <L> the type of the left value
  * @param <R> the type of the right value
  * @author Tommaso Pastorelli
- * @version 1.0.0 (20241110T115656Z)
+ * @since 1.2.0
  */
 public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	/**
@@ -27,28 +27,34 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	/**
 	 * If the pair is immutable.
 	 */
-	private boolean immutable = false;
+	private boolean immutable;
 
 	/**
 	 * Creates a new pair with the given left and right values.
 	 * @param left the left value
 	 * @param right the right value
+	 * @param immutable if the pair is immutable
+	 * @since 1.2.0
 	 */
-	private Pair(L left, R right) {
+	private Pair(L left, R right, boolean immutable) {
 		this.left = left;
 		this.right = right;
+		this.immutable = immutable;
 	}
 	/**
 	 * Creates a new pair with the left and right values of the given entry.
 	 * @param entry the entry to get the left and right values from
+	 * @since 1.2.0
 	 */
-	private Pair(Map.Entry<L, R> entry) {
+	private Pair(Map.Entry<L, R> entry, boolean immutable) {
 		this.left = isNull(entry) ? null : entry.getKey();
 		this.right = isNull(entry) ? null : entry.getValue();
+		this.immutable = immutable;
 	}
 	/**
 	 * Makes the pair immutable.
 	 * @return the pair
+	 * @since 1.2.0
 	 */
 	public Pair<L, R> immutable() {
 		this.immutable = true;
@@ -57,6 +63,7 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	/**
 	 * Makes the pair mutable.
 	 * @return the pair
+	 * @since 1.2.0
 	 */
 	public Pair<L, R> mutable() {
 		this.immutable = false;
@@ -65,6 +72,7 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 
 	/**
 	 * @return the left value
+	 * @since 1.2.0
 	 */
 	public L getLeft() {
 		return left;
@@ -72,6 +80,7 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	/**
 	 * Sets the left value.
 	 * @param left the left value
+	 * @since 1.2.0
 	 */
 	public void setLeft(L left) {
 		if (immutable) throw new UnsupportedOperationException("Pair is immutable.");
@@ -79,6 +88,7 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	}
 	/**
 	 * @return the right value
+	 * @since 1.2.0
 	 */
 	public R getRight() {
 		return right;
@@ -86,6 +96,7 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	/**
 	 * Sets the right value.
 	 * @param right the right value
+	 * @since 1.2.0
 	 */
 	public void setRight(R right) {
 		if (immutable) throw new UnsupportedOperationException("Pair is immutable.");
@@ -93,6 +104,7 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	}
 	/**
 	 * @return the left value
+	 * @since 1.2.0
 	 */
 	@Override
 	public L getKey() {
@@ -100,6 +112,7 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	}
 	/**
 	 * @return the right value
+	 * @since 1.2.0
 	 */
 	@Override
 	public R getValue() {
@@ -109,6 +122,7 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	 * Sets the right value.
 	 * @param value the right value
 	 * @return the right value
+	 * @since 1.2.0
 	 */
 	@Override
 	public R setValue(R value) {
@@ -118,12 +132,14 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	}
 	/**
 	 * @return if the pair is immutable
+	 * @since 1.2.0
 	 */
 	public boolean isImmutable() {
 		return immutable;
 	}
 	/**
 	 * @return if the pair is equal to another object
+	 * @since 1.2.0
 	 */
 	@Override
 	public boolean equals(Object o) {
@@ -134,96 +150,105 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	}
 	/**
 	 * @return the hash code of the pair
+	 * @since 1.2.0
 	 */
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(getLeft()) ^ Objects.hashCode(getValue());
 	}
 	/**
-	 * Creates a new pair with the given left and right values.
+	 * Creates a new pair with the given left and right values. Creates an immutable pair.
 	 * @param left the left value
 	 * @param right the right value
 	 * @param <L> the type of the left value
 	 * @param <R> the type of the right value
-	 * @return the pair
+	 * @return the immutable pair
+	 * @since 1.2.0
 	 */
 	public static <L, R> Pair<L, R> of(L left, R right) {
-		return new Pair<>(left, right);
+		return new Pair<>(left, right, true);
 	}
 	/**
-	 * Creates a new pair with the left and right values of the given entry.
+	 * Creates an immutable new pair with the left and right values of the given entry. Creates an immutable pair.
 	 * @param entry the entry to get the left and right values from
 	 * @param <L> the type of the left value
 	 * @param <R> the type of the right value
 	 * @return the pair
+	 * @since 1.2.0
 	 */
 	public static <L, R> Pair<L, R> of(Map.Entry<L, R> entry) {
-		return new Pair<>(entry);
+		return new Pair<>(entry, true);
 	}
 	/**
-	 * Creates a new pair with the given left and right values if they are not null.
+	 * Creates an immutable new pair with the given left and right values if they are not null.
 	 * @param left the left value; not null
 	 * @param right the right value; not null
 	 * @param <L> the type of the left value
 	 * @param <R> the type of the right value
 	 * @return the pair
+	 * @since 1.2.0
 	 */
 	public static <L, R> Pair<L, R> ofNonNull(L left, R right) {
 		return of(requireNonNull(left), requireNonNull(right));
 	}
 	/**
-	 * Creates a new pair with the left and right values of the given entry if they are not null.
+	 * Creates an immutable new pair with the left and right values of the given entry if they are not null.
 	 * @param entry the entry to get the left and right values from; not null
 	 * @param <L> the type of the left value
 	 * @param <R> the type of the right value
 	 * @return the pair
+	 * @since 1.2.0
 	 */
 	public static <L, R> Pair<L, R> ofNonNull(Map.Entry<L, R> entry) {
 		requireNonNull(entry);
 		return of(requireNonNull(entry.getKey()), requireNonNull(entry.getValue()));
 	}
 	/**
-	 * Creates a new pair with the given left and right values and makes it immutable.
+	 * Creates a mutable new pair with the given left and right values.
 	 * @param left the left value
 	 * @param right the right value
 	 * @param <L> the type of the left value
 	 * @param <R> the type of the right value
 	 * @return the pair
+	 * @since 1.2.0
 	 */
-	public static <L, R> Pair<L, R> immutable(L left, R right) {
-		return new Pair<>(left, right).immutable();
+	public static <L, R> Pair<L, R> mutable(L left, R right) {
+		return new Pair<>(left, right, false);
 	}
 	/**
-	 * Creates a new pair with the left and right values of the given entry and makes it immutable.
+	 * Creates a mutable new pair with the left and right values of the given entry.
 	 * @param entry the entry to get the left and right values from
 	 * @param <L> the type of the left value
 	 * @param <R> the type of the right value
 	 * @return the pair
+	 * @since 1.2.0
 	 */
-	public static <L, R> Pair<L, R> immutable(Map.Entry<L, R> entry) {
-		return new Pair<>(entry).immutable();
+	public static <L, R> Pair<L, R> mutable(Map.Entry<L, R> entry) {
+		return new Pair<>(entry, false);
 	}
 	/**
-	 * Creates a new pair with the given left and right values if they are not null and makes it immutable.
+	 * Creates a mutable new pair with the given left and right values if they are not null and makes it immutable.
 	 * @param left the left value; not null
 	 * @param right the right value; not null
 	 * @param <L> the type of the left value
 	 * @param <R> the type of the right value
 	 * @return the pair
+	 * @since 1.2.0
 	 */
-	public static <L, R> Pair<L, R> immutableNonNull(L left, R right) {
-		return immutable(requireNonNull(left), requireNonNull(right));
+	public static <L, R> Pair<L, R> mutableNonNull(L left, R right) {
+		return mutable(requireNonNull(left), requireNonNull(right));
 	}
 	/**
-	 * Creates a new pair with the left and right values of the given entry if they are not null and makes it immutable.
+	 * Creates a mutable pair with the left and right values of the given entry if they are not null and makes it immutable.
 	 * @param entry the entry to get the left and right values from; not null
 	 * @param <L> the type of the left value
 	 * @param <R> the type of the right value
 	 * @return the pair
+	 * @since 1.2.0
 	 */
-	public static <L, R> Pair<L, R> immutableNonNull(Map.Entry<L, R> entry) {
+	public static <L, R> Pair<L, R> mutableNonNull(Map.Entry<L, R> entry) {
 		requireNonNull(entry);
-		return immutable(requireNonNull(entry.getKey()), requireNonNull(entry.getValue()));
+		return mutable(requireNonNull(entry.getKey()), requireNonNull(entry.getValue()));
 	}
 	/**
 	 * @return the string representation of the pair

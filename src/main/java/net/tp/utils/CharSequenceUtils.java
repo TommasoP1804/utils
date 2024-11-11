@@ -1,6 +1,7 @@
 package net.tp.utils;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.regex.Pattern;
 
 import static java.util.Objects.*;
@@ -9,7 +10,7 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
 /**
  * Utility class for char sequences.
  * @author Tommaso Pastorelli
- * @version 1.0.0 (20241109T180359Z)
+ * @since 1.0.0
  */
 public abstract class CharSequenceUtils {
 	/**
@@ -1531,4 +1532,69 @@ public abstract class CharSequenceUtils {
 		for (CharSequence s : search) str = str.replace(s, replace);
 		return str;
 	}
+
+	/**
+	 * Capitalize a char sequence.
+	 * @param cs the char sequence to capitalize
+	 * @return the capitalized char sequence
+	 * @since 1.2.0
+	 */
+	public static CharSequence capitalize(CharSequence cs) {
+		if (isNullOrEmpty(cs)) return cs;
+		return String.valueOf(Character.toTitleCase(cs.charAt(0))) + cs.subSequence(1, cs.length());
+	}
+
+	/**
+	 * Reverse a char sequence.
+	 * @param cs the char sequence to reverse
+	 * @return the reversed char sequence
+	 * @since 1.2.0
+	 */
+	public static CharSequence reverse (CharSequence cs) {
+		if (isNullOrEmpty(cs)) return cs;
+		int length = cs.length();
+		if (length <= 1) return cs;
+		char[] chars = new char[length];
+		for (int i = 0; i < length; i++) {
+			chars[length - i - 1] = cs.charAt(i);
+		}
+		return new String(chars);
+	}
+
+	/**
+	 * Join a char sequence with a delimiter.
+	 * @param delimiter the delimiter
+	 * @param elements the elements to join
+	 * @return the joined char sequence
+	 * @since 1.2.0
+	 */
+	public static CharSequence join(Object delimiter, Object... elements) {
+		if (isNull(delimiter) || isNull(elements) || elements.length == 0) return EMPTY;
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < elements.length; i++) {
+			if (i > 0) sb.append(delimiter);
+			sb.append(elements[i].toString());
+		}
+		return sb;
+	}
+
+	/**
+	 * Join a char sequence with a delimiter.
+	 * @param delimiter the delimiter
+	 * @param elements the elements to join
+	 * @return the joined char sequence
+	 * @since 1.2.0
+	 */
+	public static CharSequence join(Object delimiter, Iterable<?> elements) {
+		if (isNull(delimiter) || isNull(elements)) return EMPTY;
+		StringBuilder sb = new StringBuilder();
+		Iterator<?> it = elements.iterator();
+		while (it.hasNext()) {
+			sb.append(it.next());
+			if (it.hasNext()) sb.append(delimiter);
+		}
+		return sb;
+	}
+
+
 }

@@ -12,7 +12,7 @@ import static java.util.Objects.requireNonNull;
  * @param <M> the type of the middle value
  * @param <R> the type of the right value
  * @author Tommaso Pastorelli
- * @version 1.0.0 (20241110T120322Z)
+ * @since 1.2.0
  */
 public class Triple<L, M, R> implements Serializable {
 	/**
@@ -37,8 +37,10 @@ public class Triple<L, M, R> implements Serializable {
 	 * @param left the left value
 	 * @param middle the middle value
 	 * @param right the right value
+	 * @param immutable if the triple is immutable
+	 * @since 1.2.0
 	 */
-	private Triple(L left, M middle, R right) {
+	private Triple(L left, M middle, R right, boolean immutable) {
 		this.left = left;
 		this.middle = middle;
 		this.right = right;
@@ -46,6 +48,7 @@ public class Triple<L, M, R> implements Serializable {
 	/**
 	 * Makes the triple immutable.
 	 * @return the triple
+	 * @since 1.2.0
 	 */
 	public Triple<L, M, R> immutable() {
 		this.immutable = true;
@@ -54,6 +57,7 @@ public class Triple<L, M, R> implements Serializable {
 	/**
 	 * Makes the triple mutable.
 	 * @return the triple
+	 * @since 1.2.0
 	 */
 	public Triple<L, M, R> mutable() {
 		this.immutable = false;
@@ -62,6 +66,7 @@ public class Triple<L, M, R> implements Serializable {
 
 	/**
 	 * @return the left value
+	 * @since 1.2.0
 	 */
 	public L getLeft() {
 		return left;
@@ -69,6 +74,7 @@ public class Triple<L, M, R> implements Serializable {
 	/**
 	 * Sets the left value.
 	 * @param left the left value
+	 * @since 1.2.0
 	 */
 	public void setLeft(L left) {
 		if (immutable) throw new UnsupportedOperationException("Pair is immutable.");
@@ -76,6 +82,7 @@ public class Triple<L, M, R> implements Serializable {
 	}
 	/**
 	 * @return the middle value
+	 * @since 1.2.0
 	 */
 	public M getMiddle() {
 		return middle;
@@ -83,12 +90,14 @@ public class Triple<L, M, R> implements Serializable {
 	/**
 	 * Sets the middle value.
 	 * @param middle the middle value
+	 * @since 1.2.0
 	 */
 	public void setMiddle(M middle) {
 		this.middle = middle;
 	}
 	/**
 	 * @return the right value
+	 * @since 1.2.0
 	 */
 	public R getRight() {
 		return right;
@@ -96,6 +105,7 @@ public class Triple<L, M, R> implements Serializable {
 	/**
 	 * Sets the right value.
 	 * @param right the right value
+	 * @since 1.2.0
 	 */
 	public void setRight(R right) {
 		if (immutable) throw new UnsupportedOperationException("Pair is immutable.");
@@ -103,12 +113,14 @@ public class Triple<L, M, R> implements Serializable {
 	}
 	/**
 	 * @return if the triple is immutable
+	 * @since 1.2.0
 	 */
 	public boolean isImmutable() {
 		return immutable;
 	}
 	/**
 	 * @return if the triple is equal to another object
+	 * @since 1.2.0
 	 */
 	@Override
 	public boolean equals(Object o) {
@@ -119,6 +131,7 @@ public class Triple<L, M, R> implements Serializable {
 	}
 	/**
 	 * @return the hash code of the triple
+	 * @since 1.2.0
 	 */
 	@Override
 	public int hashCode() {
@@ -133,9 +146,10 @@ public class Triple<L, M, R> implements Serializable {
 	 * @param <M> the type of the middle value
 	 * @param <R> the type of the right value
 	 * @return the triple
+	 * @since 1.2.0
 	 */
 	public static <L, M, R> Triple<L, M, R> of(L left, M middle, R right) {
-		return new Triple<>(left, middle, right);
+		return new Triple<>(left, middle, right, true);
 	}
 	/**
 	 * Creates a new triple with the given left, middle, and right values if they are not null.
@@ -146,6 +160,7 @@ public class Triple<L, M, R> implements Serializable {
 	 * @param <M> the type of the middle value
 	 * @param <R> the type of the right value
 	 * @return the triple
+	 * @since 1.2.0
 	 */
 	public static <L, M, R> Triple<L, M, R> ofNonNull(L left, M middle, R right) {
 		return of(requireNonNull(left), requireNonNull(middle), requireNonNull(right));
@@ -159,9 +174,10 @@ public class Triple<L, M, R> implements Serializable {
 	 * @param <M> the type of the middle value
 	 * @param <R> the type of the right value
 	 * @return the triple
+	 * @since 1.2.0
 	 */
-	public static <L, M, R> Triple<L, M, R> immutable(L left, M middle, R right) {
-		return new Triple<>(left, middle, right).immutable();
+	public static <L, M, R> Triple<L, M, R> mutable(L left, M middle, R right) {
+		return new Triple<>(left, middle, right, false).immutable();
 	}
 	/**
 	 * Creates a new triple with the given left, middle, and right values if they are not null and makes it immutable.
@@ -172,12 +188,14 @@ public class Triple<L, M, R> implements Serializable {
 	 * @param <M> the type of the middle value
 	 * @param <R> the type of the right value
 	 * @return the triple
+	 * @since 1.2.0
 	 */
-	public static <L, M, R> Triple<L, M, R> immutableNonNull(L left, M middle, R right) {
-		return immutable(requireNonNull(left), requireNonNull(middle), requireNonNull(right));
+	public static <L, M, R> Triple<L, M, R> mutableNonNull(L left, M middle, R right) {
+		return mutable(requireNonNull(left), requireNonNull(middle), requireNonNull(right));
 	}
 	/**
 	 * @return the string representation of the triple
+	 * @since 1.2.0
 	 */
 	@Override
 	public String toString() {
@@ -185,6 +203,7 @@ public class Triple<L, M, R> implements Serializable {
 	}
 	/**
 	 * @return the string representation of the triple with the given format
+	 * @since 1.2.0
 	 */
 	public String toString(String format) {
 		return String.format(format, left, middle, right);

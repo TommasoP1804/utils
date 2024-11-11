@@ -10,7 +10,7 @@ import static java.util.Objects.isNull;
 /**
  * A utility class for numbers.
  * @author Tommaso Pastorelli
- * @version 1.0.0 (20241110T120409Z)
+ * @since 1.0.0
  */
 public abstract class NumberUtils {
 	/**

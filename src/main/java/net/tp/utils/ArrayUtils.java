@@ -4,9 +4,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static java.util.Objects.*;
@@ -16,7 +14,7 @@ import static java.util.stream.IntStream.range;
  * Utility class for arrays.
  *
  * @author Tommaso Pastorelli
- * @version 1.0.0 (20241110T123256Z)
+ * @since 1.0.0
  */
 public abstract class ArrayUtils {
 	/**
@@ -2996,6 +2994,106 @@ public abstract class ArrayUtils {
 	@SafeVarargs
 	public static <T> boolean containsNone(T[] array, T... elements) {
 		return !containsAny(array, elements);
+	}
+
+	/**
+	 * Checks if the array contains duplicates.
+	 * @param array the array to check
+	 * @return {@code true} if the array contains duplicates, otherwise {@code false}
+	 * @param <E> the type of the array
+	 * @since 1.2.0
+	 */
+	public static <E> boolean containsDuplicates(E[] array) {
+		if (isNull(array)) return false;
+		return array.length != new HashSet<>(Arrays.asList(array)).size();
+	}
+
+	/**
+	 * Checks if the byte-array contains duplicates.
+	 * @param array the byte-array to check
+	 * @return {@code true} if the byte-array contains duplicates, otherwise {@code false}
+	 * @since 1.2.0
+	 */
+	public static boolean containsDuplicates(byte[] array) {
+		if (isNull(array)) return false;
+		return array.length != new HashSet<>(Arrays.asList(array)).size();
+	}
+
+	/**
+	 * Checks if the short-array contains duplicates.
+	 * @param array the short-array to check
+	 * @return {@code true} if the short-array contains duplicates, otherwise {@code false}
+	 * @since 1.2.0
+	 */
+	public static boolean containsDuplicates(short[] array) {
+		if (isNull(array)) return false;
+		return array.length != new HashSet<>(Arrays.asList(array)).size();
+	}
+
+	/**
+	 * Checks if the int-array contains duplicates.
+	 * @param array the int-array to check
+	 * @return {@code true} if the int-array contains duplicates, otherwise {@code false}
+	 * @since 1.2.0
+	 */
+	public static boolean containsDuplicates(int[] array) {
+		if (isNull(array)) return false;
+		return array.length != new HashSet<>(Arrays.asList(array)).size();
+	}
+
+	/**
+	 * Checks if the long-array contains duplicates.
+	 * @param array the long-array to check
+	 * @return {@code true} if the long-array contains duplicates, otherwise {@code false}
+	 * @since 1.2.0
+	 */
+	public static boolean containsDuplicates(long[] array) {
+		if (isNull(array)) return false;
+		return array.length != new HashSet<>(Arrays.asList(array)).size();
+	}
+
+	/**
+	 * Checks if the float-array contains duplicates.
+	 * @param array the float-array to check
+	 * @return {@code true} if the float-array contains duplicates, otherwise {@code false}
+	 * @since 1.2.0
+	 */
+	public static boolean containsDuplicates(float[] array) {
+		if (isNull(array)) return false;
+		return array.length != new HashSet<>(Arrays.asList(array)).size();
+	}
+
+	/**
+	 * Checks if the double-array contains duplicates.
+	 * @param array the double-array to check
+	 * @return {@code true} if the double-array contains duplicates, otherwise {@code false}
+	 * @since 1.2.0
+	 */
+	public static boolean containsDuplicates(double[] array) {
+		if (isNull(array)) return false;
+		return array.length != new HashSet<>(Arrays.asList(array)).size();
+	}
+
+	/**
+	 * Checks if the char-array contains duplicates.
+	 * @param array the char-array to check
+	 * @return {@code true} if the char-array contains duplicates, otherwise {@code false}
+	 * @since 1.2.0
+	 */
+	public static boolean containsDuplicates(char[] array) {
+		if (isNull(array)) return false;
+		return array.length != new HashSet<>(Arrays.asList(array)).size();
+	}
+
+	/**
+	 * Checks if the boolean-array contains duplicates.
+	 * @param array the boolean-array to check
+	 * @return {@code true} if the boolean-array contains duplicates, otherwise {@code false}
+	 * @since 1.2.0
+	 */
+	public static boolean containsDuplicates(boolean[] array) {
+		if (isNull(array)) return false;
+		return array.length != new HashSet<>(Arrays.asList(array)).size();
 	}
 
 	/**

@@ -28,7 +28,7 @@ import static java.util.Objects.requireNonNullElse;
  * such as an offset or time-zone.
  *
  * @author Tommaso Pastorelli
- * @version 1.1.3 (20241014T092122Z)
+ * @since 1.0.0
  */
 public class LocalMonthDayTime {
 	private final MonthDay monthDay;
@@ -202,6 +202,7 @@ public class LocalMonthDayTime {
 	 * @return a {@code LocalMonthDayTime} based on date-time without year with the days subtracted; not null
 	 * @param leap true if the year is a leap year and 29 days will be calculated for the month of February for the reference year
 	 * @throws DateTimeException if the result exceeds the supported date range
+	 * @since 1.0.0
 	 */
 	public LocalMonthDayTime minusDays(long amountToSubtract, boolean leap) {
 		return amountToSubtract == MIN_VALUE
@@ -702,7 +703,7 @@ public class LocalMonthDayTime {
 	 * @return a {@code LocalDateTimeWithoutException} based on date-time with the specified amount subtracted; not null
 	 * @throws DateTimeException if the subtraction cannot be made
 	 * @throws ArithmeticException if numeric overflow occurs
-	 * @since 1.0.3
+	 * @since 1.0.0
 	 */
 	public LocalMonthDayTime plus(LocalMonthDayTime other, boolean firstLeap, boolean secondLeap) {
 		other = requireNonNullElse(other, now());
@@ -781,7 +782,7 @@ public class LocalMonthDayTime {
 	 * @param year The year that you want in the date; if null the current year
 	 * @return The new local date-time; not null
 	 * @throws NumberFormatException if the year is not a valid integer
-	 * @since 1.1.1
+	 * @since 1.0.0
 	 */
 	public LocalDateTime toLocalDateTime(Year year) {
 		return toLocalDateTime(requireNonNullElse(year, Year.now()).getValue());

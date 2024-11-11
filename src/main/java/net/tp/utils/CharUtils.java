@@ -8,9 +8,8 @@ import static java.util.Objects.isNull;
  * Utility class for characters.
  *
  * @author Tommaso Pastorelli
- * @version 1.0.0 (20241110T175015Z)
+ * @since 1.0.0
  */
-
 public abstract class CharUtils {
 	/**
 	 * The hexadecimal digits
