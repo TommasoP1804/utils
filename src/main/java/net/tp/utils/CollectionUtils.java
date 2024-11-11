@@ -192,22 +192,30 @@ public abstract class CollectionUtils {
 	 * Returns the subtraction of multiple collections.
 	 *
 	 * @param collections the collections
-	 * @param <T> the type of the elements
+	 * @param <E> the type of the elements
 	 * @return the subtraction of the collections
 	 * @since 1.0.0
 	 */
-	public static <T> Collection<T> subtract(Collection<T>... collections) {
-		Collection<T> result = requireNonNull(collections)[0];
+	public static <E> Collection<E> subtract(Collection<E>... collections) {
+		Collection<E> result = requireNonNull(collections)[0];
 		for (int i = 1; i < collections.length; ++i) {
 			result = subtract(result, collections[i]);
 		}
 		return result;
 	}
 
-	public static <E> Map<E, Integer> getCardinalityMap(Collection<E> col) {
+	/**
+	 * Return the cardinality of an object in a collection.
+	 *
+	 * @param collection the collection
+	 * @param <E> the type of the elements
+	 * @return the cardinality of the object in the collection
+	 * @since 1.0.0
+	 */
+	public static <E> Map<E, Integer> getCardinalityMap(Collection<E> collection) {
 		HashMap<E, Integer> count = new HashMap<>();
 
-		for (E obj : requireNonNull(col)) {
+		for (E obj : requireNonNull(collection)) {
 			Integer c = (Integer) count.get(obj);
 			if (isNull(c)) count.put(obj, 1);
 			else count.put(obj, c + 1);

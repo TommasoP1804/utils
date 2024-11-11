@@ -202,6 +202,7 @@ public class Triple<L, M, R> implements Serializable {
 		return "(" + left + ", " + middle + ", " + right + ")";
 	}
 	/**
+	 * @param format the format
 	 * @return the string representation of the triple with the given format
 	 * @since 1.2.0
 	 */

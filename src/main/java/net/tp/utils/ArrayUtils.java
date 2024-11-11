@@ -122,10 +122,11 @@ public abstract class ArrayUtils {
 	 * Checks if an array is empty.
 	 *
 	 * @param array the array to check
+	 * @param <E> the type of the elements
 	 * @return {@code true} if the array is empty, {@code false} otherwise
 	 * @since 1.0.0
 	 */
-	public static <T> boolean isEmpty(T[] array) {
+	public static <E> boolean isEmpty(E[] array) {
 		return requireNonNull(array).length == 0;
 	}
 
@@ -221,10 +222,11 @@ public abstract class ArrayUtils {
 	 * Checks if an array is null or empty.
 	 *
 	 * @param array the array to check
+	 * @param <E> the type of the elements
 	 * @return {@code true} if the array is null or empty, {@code false} otherwise
 	 * @since 1.0.0
 	 */
-	public static <T> boolean isNullOrEmpty(T[] array) {
+	public static <E> boolean isNullOrEmpty(E[] array) {
 		return isNull(array) || array.length == 0;
 	}
 
@@ -320,10 +322,11 @@ public abstract class ArrayUtils {
 	 * Checks if an array is not empty.
 	 *
 	 * @param array the array to check
+	 * @param <E> the type of the elements
 	 * @return {@code true} if the array is not empty, {@code false} otherwise
 	 * @since 1.0.0
 	 */
-	public static <T> boolean isNotEmpty(T[] array) {
+	public static <E> boolean isNotEmpty(E[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -430,18 +433,19 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to which the element will be added
 	 * @param elements the element to add
+	 * @param <E> the type of the elements
 	 * @return the array with the element added
 	 * @since 1.0.0
 	 */
 	@SafeVarargs
-	public static <T> T[] add(T[] array, T... elements) {
-		if (isNull(array)) array = (T[]) Array.newInstance(elements[0].getClass(), 0);
+	public static <E> E[] add(E[] array, E... elements) {
+		if (isNull(array)) array = (E[]) Array.newInstance(elements[0].getClass(), 0);
 		if (isNull(elements) || elements.length == 0) return array;
 
 		Object newArray = copyArrayGrow(array, elements.length, elements[0].getClass());
 		range(0, elements.length).forEach(i -> Array.set(newArray, Array.getLength(newArray) - elements.length + i, elements[i]));
 
-		@SuppressWarnings("unchecked") T[] result = (T[]) newArray;
+		@SuppressWarnings("unchecked") E[] result = (E[]) newArray;
 		return result;
 	}
 
@@ -451,10 +455,11 @@ public abstract class ArrayUtils {
 	 * @param array the array to which the element will be added
 	 * @param index the index at which the element will be added
 	 * @param elements the element to add
+	 * @param <E> the type of the elements
 	 * @return the array with the element added
 	 * @since 1.0.0
 	 */
-	public static <T> T[] add(T[] array, int index, List<T> elements) {
+	public static <E> E[] add(E[] array, int index, List<E> elements) {
 		if (isNull(elements) || elements.isEmpty()) return array;
 
 		if (isNull(array)) {
@@ -462,7 +467,7 @@ public abstract class ArrayUtils {
 			Object joinedArray = Array.newInstance(elements.getFirst().getClass(), elements.size());
 			range(0, elements.size()).forEach(i -> Array.set(joinedArray, i, elements.get(i)));
 
-			@SuppressWarnings("unchecked") T[] result = (T[]) joinedArray;
+			@SuppressWarnings("unchecked") E[] result = (E[]) joinedArray;
 			return result;
 		} else {
 			int length = Array.getLength(array);
@@ -473,7 +478,7 @@ public abstract class ArrayUtils {
 
 				if (index < length) System.arraycopy(array, index, newArray, index + elements.size(), length - index);
 
-				@SuppressWarnings("unchecked") T[] result = (T[]) newArray;
+				@SuppressWarnings("unchecked") E[] result = (E[]) newArray;
 				return result;
 			} else throw new IndexOutOfBoundsException("Index: " + index + ", Length: " + length);
 		}
@@ -485,10 +490,11 @@ public abstract class ArrayUtils {
 	 * @param array the array to which the element will be added
 	 * @param index the index at which the element will be added
 	 * @param element the element to add
+	 * @param <E> the type of the elements
 	 * @return the array with the element added
 	 * @since 1.0.0
 	 */
-	public static <T> T[] add(T[] array, int index, T element) {
+	public static <E> E[] add(E[] array, int index, E element) {
 		return add(array, index, List.of(element));
 	}
 
@@ -884,14 +890,15 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array of String to which the element will be added
 	 * @param elements the String element to add
+	 * @param <E> the type of the elements
 	 * @return the array with the element added
 	 * @since 1.0.0
 	 */
-	public static <T> T[] add(T[]array, List<T> elements) {
-		if (isNull(array)) array = (T[]) Array.newInstance(elements.get(0).getClass(), 0);
+	public static <E> E[] add(E[]array, List<E> elements) {
+		if (isNull(array)) array = (E[]) Array.newInstance(elements.get(0).getClass(), 0);
 		if (isNull(elements) || elements.isEmpty()) return array;
 
-		@SuppressWarnings("unchecked") T[] result = (T[]) add(array, elements.toArray());
+		@SuppressWarnings("unchecked") E[] result = (E[]) add(array, elements.toArray());
 		return result;
 	}
 
@@ -920,14 +927,14 @@ public abstract class ArrayUtils {
 	 * Remove the element from the array at the specified index.
 	 * @param array the array to remove the element from
 	 * @param index the index of the element to remove
-	 * @param <T> the type of the array
+	 * @param <E> the type of the array
 	 * @return the array with the element removed
 	 * @since 1.0.0
 	 */
-	public static <T> T[] remove(T[] array, int index) {
+	public static <E> E[] remove(E[] array, int index) {
 		if (isNullOrEmpty(array)) return array;
 
-		@SuppressWarnings("unchecked") T[] result = (T[]) remove((Object) array, index);
+		@SuppressWarnings("unchecked") E[] result = (E[]) remove((Object) array, index);
 		return result;
 	}
 	
@@ -935,14 +942,14 @@ public abstract class ArrayUtils {
 	 * Remove the element from the array at the specified indexes.
 	 * @param array the array to remove the element from
 	 * @param index the indexes of the element to remove
-	 * @param <T> the type of the array
+	 * @param <E> the type of the array
 	 * @return the array with the element removed
 	 * @since 1.0.0
 	 */
-	public static <T> T[] remove(T[] array, int... index) {
+	public static <E> E[] remove(E[] array, int... index) {
 		if (isNullOrEmpty(array)) return array;
 
-		@SuppressWarnings("unchecked") T[] result = (T[]) remove((Object) array, index);
+		@SuppressWarnings("unchecked") E[] result = (E[]) remove((Object) array, index);
 		return result;
 	}
 	
@@ -950,11 +957,11 @@ public abstract class ArrayUtils {
 	 * Remove all the occurrences of the element from the array.
 	 * @param array the array to remove the element from
 	 * @param element the element to remove
-	 * @param <T> the type of the array
+	 * @param <E> the type of the array
 	 * @return the array with the element removed
 	 * @since 1.0.0
 	 */
-	public static <T> T[] remove(T[] array, T element) {
+	public static <E> E[] remove(E[] array, E element) {
 		if (isNullOrEmpty(array)) return array;
 		array = remove(array, indexesOf(array, element));
 		return array;
@@ -964,13 +971,13 @@ public abstract class ArrayUtils {
 	 * Remove all the occurrences of the elements from the array.
 	 * @param array the array to remove the element from
 	 * @param elements the elements to remove
-	 * @param <T> the type of the array
+	 * @param <E> the type of the array
 	 * @return the array with the element removed
 	 * @since 1.0.0
 	 */
-	public static <T> T[] remove(T[] array, List<T> elements) {
+	public static <E> E[] remove(E[] array, List<E> elements) {
 		if (isNullOrEmpty(array)) return array;
-		for (T element : elements) array = remove(array, element);
+		for (E element : elements) array = remove(array, element);
 		return array;
 	}
 
@@ -1078,6 +1085,7 @@ public abstract class ArrayUtils {
 	 * Remove the element from the int-array at the specified index.
 	 * @param array the int-array to remove the element from
 	 * @param i the index of the element to remove (if {@code element} is {@code true}) -- the element to remove (if {@code element} is {@code false})
+	 * @param element {@code false} if the {@code i} is the index of the element to remove, {@code true} if {@code i} is the element to remove
 	 * @return the int-array with the element removed
 	 * @since 1.0.0
 	 */
@@ -1396,17 +1404,17 @@ public abstract class ArrayUtils {
  	 * @param array the array to reverse
 	 * @param startIndex the index to start reversing from (inclusive)
 	 * @param endIndex the index to end reversing at (exclusive)
-	 * @param <T> the type of the array
+	 * @param <E> the type of the array
 	 * @since 1.0.0
 	 */
-	public static <T> void reverse(T[] array, int startIndex, int endIndex) {
+	public static <E> void reverse(E[] array, int startIndex, int endIndex) {
 		if (array != null) {
 			int i = Math.max(startIndex, 0);
 
 			for (int j = Math.min(array.length, endIndex) - 1; j > i; ++i) {
 				Object tmp = array[j];
 				array[j] = array[i];
-				array[i] = (T) tmp;
+				array[i] = (E) tmp;
 				--j;
 			}
 		}
@@ -1415,9 +1423,9 @@ public abstract class ArrayUtils {
 	/**
 	 * Reverse the array.
 	 * @param array the array to reverse
-	 * @param <T> the type of the array
+	 * @param <E> the type of the array
 	 */
-	public static <T> void reverse(T[] array) {
+	public static <E> void reverse(E[] array) {
 		reverse(array, 0, array.length);
 	}
 
@@ -1832,20 +1840,13 @@ public abstract class ArrayUtils {
 	 */
 	public static void shift(int[] array, int startIndex, int endIndex, int offset) {
 		if (array != null && startIndex < array.length - 1 && endIndex > 0) {
-			if (startIndex < 0) {
-				startIndex = 0;
-			}
-
-			if (endIndex >= array.length) {
-				endIndex = array.length;
-			}
+			if (startIndex < 0) startIndex = 0;
+			if (endIndex >= array.length) endIndex = array.length;
 
 			int n = endIndex - startIndex;
 			if (n > 1) {
 				offset %= n;
-				if (offset < 0) {
-					offset += n;
-				}
+				if (offset < 0) offset += n;
 
 				while (n > 1 && offset > 0) {
 					int nOffset = n - offset;
@@ -1858,7 +1859,6 @@ public abstract class ArrayUtils {
 							swap(array, startIndex, startIndex + nOffset, offset);
 							break;
 						}
-
 						swap(array, startIndex, startIndex + nOffset, offset);
 						startIndex += offset;
 						n = nOffset;
@@ -2326,15 +2326,15 @@ public abstract class ArrayUtils {
 	 *
 	 * <p>This method returns {@code null} if {@code array} is {@code null}.
 	 *
-	 * @param <T> the component type of the array
+	 * @param <E> the component type of the array
 	 * @param array the array to get a subarray of, may be {@code null}
 	 * @param startIndex the starting index of the subarray (inclusive)
 	 * @param endIndex the ending index of the subarray (exclusive)
 	 * @return a new array containing the subarray, {@code null} if null array input
 	 * @throws IllegalArgumentException if {@code startIndexInclusive} is greater than {@code endIndexExclusive}
-	 * @since 2.1
+	 * @since 1.0.0
 	 */
-	public static <T> T[] subarray(T[] array, int startIndex, int endIndex) {
+	public static <E> E[] subarray(E[] array, int startIndex, int endIndex) {
 		if (isNull(array)) return null;
 
 		if (startIndex < 0) startIndex = 0;
@@ -2342,10 +2342,10 @@ public abstract class ArrayUtils {
 		if (endIndex > array.length) endIndex = array.length;
 
 		int newSize = endIndex - startIndex;
-		@SuppressWarnings("unchecked") Class<T> type = (Class<T>) array.getClass().getComponentType();
-		if (newSize <= 0) return (T[]) Array.newInstance(type, 0);
+		@SuppressWarnings("unchecked") Class<E> type = (Class<E>) array.getClass().getComponentType();
+		if (newSize <= 0) return (E[]) Array.newInstance(type, 0);
 
-		T[] subarray = (T[]) Array.newInstance(type, newSize);
+		E[] subarray = (E[]) Array.newInstance(type, newSize);
 		System.arraycopy(array, startIndex, subarray, 0, newSize);
 		return subarray;
 	}
@@ -2932,12 +2932,13 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param element the element to check
+	 * @param <E> the type of the array
 	 * @return {@code true} if the array contains the element, {@code false} otherwise
 	 * @since 1.0.0
 	 */
-	public static <T> boolean contains(T[] array, T element) {
+	public static <E> boolean contains(E[] array, E element) {
 		if (isNull(array) || isNull(element)) return false;
-		for (T e : array) if (element.equals(e)) return true;
+		for (E e : array) if (element.equals(e)) return true;
 		return false;
 	}
 
@@ -2946,10 +2947,11 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param element the element to check
+	 * @param <E> the type of the array
 	 * @return {@code true} if the array does not contain the element, {@code false} otherwise
 	 * @since 1.0.0
 	 */
-	public static <T> boolean notContains(T[] array, T element) {
+	public static <E> boolean notContains(E[] array, E element) {
 		return !contains(array, element);
 	}
 
@@ -2958,13 +2960,14 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param elements the elements to check
+	 * @param <E> the type of the array
 	 * @return {@code true} if the array contains all the elements, {@code false} otherwise
 	 * @since 1.0.0
 	 */
 	@SafeVarargs
-	public static <T> boolean containsAll(T[] array, T... elements) {
+	public static <E> boolean containsAll(E[] array, E... elements) {
 		if (isNull(array) || isNull(elements)) return false;
-		for (T e : elements) if (!contains(array, e)) return false;
+		for (E e : elements) if (!contains(array, e)) return false;
 		return true;
 	}
 
@@ -2973,13 +2976,14 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param elements the elements to check
+	 * @param <E> the type of the array
 	 * @return {@code true} if the array contains any of the elements, {@code false} otherwise
 	 * @since 1.0.0
 	 */
 	@SafeVarargs
-	public static <T> boolean containsAny(T[] array, T... elements) {
+	public static <E> boolean containsAny(E[] array, E... elements) {
 		if (isNull(array) || isNull(elements)) return false;
-		for (T e : elements) if (contains(array, e)) return true;
+		for (E e : elements) if (contains(array, e)) return true;
 		return false;
 	}
 
@@ -2988,11 +2992,12 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param elements the elements to check
+	 * @param <E> the type of the array
 	 * @return {@code true} if the array contains none of the elements, {@code false} otherwise
 	 * @since 1.0.0
 	 */
 	@SafeVarargs
-	public static <T> boolean containsNone(T[] array, T... elements) {
+	public static <E> boolean containsNone(E[] array, E... elements) {
 		return !containsAny(array, elements);
 	}
 
@@ -3101,10 +3106,11 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param element the element to check
+	 * @param <E> the type of the array
 	 * @return the index of the first occurrence of the element in the array, or {@code -1} if the element is not present
 	 * @since 1.0.0
 	 */
-	public static <T> int indexOf(T[] array, T element) {
+	public static <E> int indexOf(E[] array, E element) {
 		return indexOf(array, 0, element);
 	}
 
@@ -3113,11 +3119,12 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param elements the elements to check
+	 * @param <E> the type of the array
 	 * @return the indexes of the occurrences of the elements in the array
 	 * @since 1.0.0
 	 */
 	@SafeVarargs
-	public static <T> int[] indexOf(T[] array, T... elements) {
+	public static <E> int[] indexOf(E[] array, E... elements) {
 		return indexOf(array, 0, List.of(elements));
 	}
 
@@ -3126,10 +3133,11 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param elements the elements to check
+	 * @param <E> the type of the array
 	 * @return the indexes of the occurrences of the elements in the array
 	 * @since 1.0.0
 	 */
-	public static <T> int[] indexOf(T[] array, List<T> elements) {
+	public static <E> int[] indexOf(E[] array, List<E> elements) {
 		return indexOf(array, 0, elements);
 	}
 
@@ -3361,10 +3369,11 @@ public abstract class ArrayUtils {
 	 * @param array the array to check
 	 * @param fromIndex the index to start the search from
 	 * @param element the element to check
+	 * @param <E> the type of the array
 	 * @return the indexes of the occurrences of the element in the array
 	 * @since 1.0.0
 	 */
-	public static <T> int indexOf(T[] array, int fromIndex, T element) {
+	public static <E> int indexOf(E[] array, int fromIndex, E element) {
 		if (isNull(array) || isNull(element)) return INDEX_NOT_FOUND;
 		for (int i = fromIndex; i < array.length; i++) if (element.equals(array[i])) return i;
 		return INDEX_NOT_FOUND;
@@ -3376,10 +3385,11 @@ public abstract class ArrayUtils {
 	 * @param array the array to check
 	 * @param fromIndex the index to start the search from
 	 * @param elements the elements to check
+	 * @param <E> the type of the array
 	 * @return the indexes of the occurrences of the elements in the array
 	 * @since 1.0.0
 	 */
-	public static <T> int[] indexOf(T[] array, int fromIndex, List<T> elements) {
+	public static <E> int[] indexOf(E[] array, int fromIndex, List<E> elements) {
 		if (isNull(array) || isNull(elements)) return new int[0];
 		int[] indexes = new int[elements.size()];
 		for (int i = 0; i < elements.size(); i++) indexes[i] = indexOf(array, fromIndex, elements.get(i));
@@ -3655,10 +3665,11 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param element the element to check
+	 * @param <E> the type of the array
 	 * @return the index of the last occurrence of the element in the array, or {@code -1} if the element is not present
 	 * @since 1.0.0
 	 */
-	public static <T> int lastIndexOf(T[] array, T element) {
+	public static <E> int lastIndexOf(E[] array, E element) {
 		if (isNull(array) || isNull(element)) return INDEX_NOT_FOUND;
 		for (int i = array.length - 1; i >= 0; i--)
 			if (element.equals(array[i])) return i;
@@ -3670,10 +3681,11 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param elements the elements to check
+	 * @param <E> the type of the array
 	 * @return the indexes of the last occurrences of the elements in the array (-1 if not found)
 	 * @since 1.0.0
 	 */
-	public static <T> int[] lastIndexOf(T[] array, T... elements) {
+	public static <E> int[] lastIndexOf(E[] array, E... elements) {
 		if (isNull(array) || isNull(elements)) return new int[0];
 		int[] indexes = new int[elements.length];
 		for (int i = 0; i < elements.length; i++) indexes[i] = lastIndexOf(array, elements[i]);
@@ -3685,10 +3697,11 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param elements the elements to check
+	 * @param <E> the type of the array
 	 * @return the indexes of the last occurrences of the elements in the array (-1 if not found)
 	 * @since 1.0.0
 	 */
-	public static <T> int[] lastIndexOf(T[] array, List<T> elements) {
+	public static <E> int[] lastIndexOf(E[] array, List<E> elements) {
 		if (isNull(array) || isNull(elements)) return new int[0];
 		int[] indexes = new int[elements.size()];
 		for (int i = 0; i < elements.size(); i++) indexes[i] = lastIndexOf(array, elements.get(i));
@@ -3978,10 +3991,11 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param element the element to check
+	 * @param <E> the type of the array
 	 * @return the indexes of the occurrences of the element in the array
 	 * @since 1.0.0
 	 */
-	public static <T> int[] indexesOf(T[] array, T element) {
+	public static <E> int[] indexesOf(E[] array, E element) {
 		return indexesOf(array, 0, element);
 	}
 
@@ -3990,10 +4004,11 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param elements the elements to check
+	 * @param <E> the type of the array
 	 * @return the indexes of the occurrences of the elements in the array
 	 * @since 1.0.0
 	 */
-	public static <T> int[][] indexesOf(T[] array, T... elements) {
+	public static <E> int[][] indexesOf(E[] array, E... elements) {
 		return indexesOf(array, 0, List.of(elements));
 	}
 
@@ -4002,10 +4017,11 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the array to check
 	 * @param elements the elements to check
+	 * @param <E> the type of the array
 	 * @return the indexes of the occurrences of the elements in the array
 	 * @since 1.0.0
 	 */
-	public static <T> int[][] indexesOf(T[] array, List<T> elements) {
+	public static <E> int[][] indexesOf(E[] array, List<E> elements) {
 		return indexesOf(array, 0, elements);
 	}
 
@@ -4237,10 +4253,11 @@ public abstract class ArrayUtils {
 	 * @param array the array to check
 	 * @param fromIndex the index to start the search from
 	 * @param element the element to check
+	 * @param <E> the type of the array
 	 * @return the indexes of the occurrences of the element in the array starting from the specified index
 	 * @since 1.0.0
 	 */
-	public static <T> int[] indexesOf(T[] array, int fromIndex, T element) {
+	public static <E> int[] indexesOf(E[] array, int fromIndex, E element) {
 		if (isNull(array) || isNull(element)) return new int[0];
 		List<Integer> indexes = new ArrayList<>();
 		for (int i = fromIndex; i < array.length; i++) if (element.equals(array[i])) indexes.add(i);
@@ -4253,10 +4270,11 @@ public abstract class ArrayUtils {
 	 * @param array the array to check
 	 * @param fromIndex the index to start the search from
 	 * @param elements the elements to check
+	 * @param <E> the type of the array
 	 * @return the indexes of the occurrences of the elements in the array starting from the specified index
 	 * @since 1.0.0
 	 */
-	public static <T> int[][] indexesOf(T[] array, int fromIndex, List<T> elements) {
+	public static <E> int[][] indexesOf(E[] array, int fromIndex, List<E> elements) {
 		if (isNull(array) || isNull(elements)) return new int[0][0];
 		int[][] indexes = new int[elements.size()][];
 		for (int i = 0; i < elements.size(); i++) indexes[i] = indexesOf(array, fromIndex, elements.get(i));
@@ -4524,10 +4542,10 @@ public abstract class ArrayUtils {
 	 * @param index the index to insert the element at
 	 * @param element the element to insert
 	 * @return the array with the element inserted at the specified index
-	 * @param <T> the type of the array
+	 * @param <E> the type of the array
 	 * @since 1.0.0
 	 */
-	public static <T> T[] insert(T[] array, int index, T element) {
+	public static <E> E[] insert(E[] array, int index, E element) {
 		return add(array, index, element);
 	}
 
@@ -4622,13 +4640,13 @@ public abstract class ArrayUtils {
 	/**Transforms a null array into an empty array.
 	 * @param array the array to check
 	 * @param type the type of the array
-	 * @param <T> the type of the array
+	 * @param <E> the type of the array
 	 * @return the empty array if the array is null, otherwise the array itself
 	 * @since 1.0.0
 	 */
-	public static <T> T[] nullToEmpty(T[] array, Class<T> type) {
+	public static <E> E[] nullToEmpty(E[] array, Class<E> type) {
 		if (isNull(array)) {
-			@SuppressWarnings("unchecked") T[] result = (T[]) requireNonNull(type).cast(Array.newInstance(type.getComponentType(), 0));
+			@SuppressWarnings("unchecked") E[] result = (E[]) requireNonNull(type).cast(Array.newInstance(type.getComponentType(), 0));
 			return result;
 		} return array;
 	}
@@ -4707,11 +4725,11 @@ public abstract class ArrayUtils {
 
 	/**Transforms an empty array into a null array.
 	 * @param array the array to check
-	 * @param <T> the type of the array
+	 * @param <E> the type of the array
 	 * @return the null array if the array is empty, otherwise the array itself
 	 * @since 1.0.0
 	 */
-	public static <T> T[] emptyToNull(T[] array) {
+	public static <E> E[] emptyToNull(E[] array) {
 		return isNullOrEmpty(array) ? null : array;
 	}
 
@@ -4789,11 +4807,12 @@ public abstract class ArrayUtils {
 
 	/**Returns the parameters as array.
 	 * @param items the parameters
-	 * @param <T> the type of the parameters
+	 * @param <E> the type of the parameters
 	 * @return the parameters as array
 	 * @since 1.0.0
 	 */
-	public static <T> T[] toArray(T... items) {return items;}
+	@SafeVarargs
+	public static <E> E[] toArray(E... items) {return items;}
 
 	/**
 	 * Transforms a byte-array into a Byte-array.
@@ -5006,10 +5025,11 @@ public abstract class ArrayUtils {
 	/**
 	* Transforms an array into a string array.
 	 * @param array the array to transform
+	 * @param <E> the type of the array
 	 * @return the string array
 	 * @since 1.0.0
 	 */
-	public static <T> String[] toStringArray(T[] array) {
+	public static <E> String[] toStringArray(E[] array) {
 		if (isNull(array)) return null;
 		String[] result = new String[array.length];
 		for (int i = 0; i < array.length; i++) result[i] = array[i].toString();

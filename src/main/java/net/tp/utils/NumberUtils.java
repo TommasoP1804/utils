@@ -18,6 +18,7 @@ public abstract class NumberUtils {
 	 *
 	 * @param number the number to check
 	 * @param classBased if the check should be based on the class of the number
+	 * @param <T> the type of the number
 	 * @return {@code true} if the number is a non-decimal number, {@code false} otherwise
 	 * @since 1.0.0
 	 */
@@ -33,6 +34,7 @@ public abstract class NumberUtils {
 	 * Checks if a given number is a non-decimal number (also a double or a float with .0 is non-decimal number, for classBased see {@link NumberUtils#isNonDecimalNumber(Number, boolean)}).
 	 *
 	 * @param number the number to check
+	 * @param <T> the type of the number
 	 * @return {@code true} if the number is a non-decimal number, {@code false} otherwise
 	 * @since 1.0.0
 	 */
@@ -45,6 +47,7 @@ public abstract class NumberUtils {
 	 *
 	 * @param number the number to check
 	 * @param classBased if the check should be based on the class of the number
+	 * @param <T> the type of the number
 	 * @return {@code true} if the number is a decimal number, {@code false} otherwise
 	 * @since 1.0.0
 	 */
@@ -59,6 +62,7 @@ public abstract class NumberUtils {
 	 * Checks if a given number is a decimal number (a double or a float with .0 is non-decimal number, for classBased see {@link NumberUtils#isDecimalNumber(Number, boolean)}).
 	 *
 	 * @param number the number to check
+	 * @param <T> the type of the number
 	 * @return {@code true} if the number is a decimal number, {@code false} otherwise
 	 * @since 1.0.0
 	 */
@@ -70,6 +74,7 @@ public abstract class NumberUtils {
 	 * Checks if a given number is even. For decimal numbers the check is based on the floor of the number.
 	 *
 	 * @param number the number to check
+	 * @param <T> the type of the number
 	 * @return {@code true} if the number is even, {@code false} otherwise
 	 * @since 1.0.0
 	 */
@@ -87,6 +92,7 @@ public abstract class NumberUtils {
 	 * Checks if a given number is odd. For decimal numbers the check is based on the floor of the number.
 	 *
 	 * @param number the number to check
+	 * @param <T> the type of the number
 	 * @return {@code true} if the number is odd, {@code false} otherwise
 	 * @since 1.0.0
 	 */
@@ -98,6 +104,7 @@ public abstract class NumberUtils {
 	 * Checks if a given number is prime.
 	 *
 	 * @param number the number to check
+	 * @param <T> the type of the number
 	 * @return {@code true} if the number is prime, {@code false} otherwise
 	 * @since 1.0.0
 	 */
@@ -115,6 +122,8 @@ public abstract class NumberUtils {
 	 *
 	 * @param a the first number
 	 * @param b the second number
+	 * @param <T1> the type of the first number
+	 * @param <T2> the type of the second number
 	 * @return the greatest common divisor of the two numbers
 	 * @since 1.0.0
 	 */
@@ -129,6 +138,7 @@ public abstract class NumberUtils {
 	 * Calculates the least common multiple of multiple numbers.
 	 *
 	 * @param numbers the numbers to calculate the least common multiple of
+	 * @param <T> the type of the numbers
 	 * @return the least common multiple of the given numbers
 	 * @since 1.0.0
 	 */
@@ -225,6 +235,7 @@ public abstract class NumberUtils {
 	 *
 	 *
 	 * @param number the number to calculate the factorial of
+	 * @param <T> the type of the number
 	 * @return the factorial of the given number
 	 * @throws IllegalArgumentException if the number is negative
 	 * @since 1.0.0

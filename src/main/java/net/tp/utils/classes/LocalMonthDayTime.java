@@ -55,9 +55,18 @@ public class LocalMonthDayTime {
 		this.monthDay = monthDay;
 		this.localTime = localTime;
 	}
+
+	/**
+	 * @return the month-day part of this date-time without year, not null
+	 * @since 1.0.0
+	 */
 	public MonthDay getMonthDay() {
 		return monthDay;
 	}
+
+	/**
+	 * @return the local time part of this date-time without year, not null
+	 */
 	public LocalTime getLocalTime() {
 		return localTime;
 	}

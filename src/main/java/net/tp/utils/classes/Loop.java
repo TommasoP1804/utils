@@ -78,6 +78,7 @@ public abstract class Loop {
 	 * }</pre>
 	 *
 	 * @param supplier The {@link Supplier} to loop.
+	 * @param <T> The type of the {@link Supplier}.
 	 * @param <V> The type of the value to return.
 	 * @return The value returned by the {@link Loop#breakAndReturn(Object)}.
 	 * @since 1.0.0

@@ -258,6 +258,7 @@ public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 		return "(" + left + ", " + right + ")";
 	}
 	/**
+	 * @param format the format to use
 	 * @return the string representation of the pair with the given format
 	 */
 	public String toString(String format) {

@@ -61,6 +61,8 @@ public abstract class ObjectUtils {
 	 *
 	 * @param obj the object to check and return if null
 	 * @param elseObj the object to return if the given object is not null
+	 * @param <T1> the type of the object to check
+	 * @param <T2> the type of the other object
 	 * @return {@code null} if the object is null, the other object otherwise
 	 * @since 1.0.0
 	 */
@@ -74,6 +76,7 @@ public abstract class ObjectUtils {
 	 * @param exceptionSupplier the supplier of the throwable to throw
 	 * @return the object if it is not null
 	 * @param <T> the type of the object
+	 * @param <X> the type of the throwable
 	 * @throws X if the object is null
 	 */
 	public static <T, X extends Throwable> T requireNonNullElseThrow(T obj, Supplier<X> exceptionSupplier) throws X {
