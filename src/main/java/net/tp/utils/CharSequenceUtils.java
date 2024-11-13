@@ -14,17 +14,29 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  */
 public abstract class CharSequenceUtils {
 	/**
+	 * The space-only char sequence.
+	 */
+	public static final CharSequence SPACE_CS = " ";
+	/**
 	 * The space-only string.
 	 */
-	public static final CharSequence SPACE = " ";
+	public static final String SPACE = " ";
+	/**
+	 * The empty-only char sequence.
+	 */
+	public static final CharSequence EMPTY_CS = "";
 	/**
 	 * The empty-only string.
 	 */
-	public static final CharSequence EMPTY = "";
+	public static final String EMPTY = "";
+	/**
+	 * The tab-only char sequence.
+	 */
+	public static final CharSequence TAB_CS = "\t";
 	/**
 	 * The tab-only string.
 	 */
-	public static final CharSequence TAB_CS = "\t";
+	public static final String TAB = "\t";
 
 	/**
 	 * Return the given char sequence if it is not null and not empty, otherwise throw an exception.
@@ -829,7 +841,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static CharSequence abbreviate(CharSequence cs, CharSequence abbrevMarker, int offset, int maxWidth) {
-		if (isNotEmpty(cs) && EMPTY.equals(abbrevMarker) && maxWidth > 0)
+		if (isNotEmpty(cs) && EMPTY_CS.equals(abbrevMarker) && maxWidth > 0)
 			return cs.subSequence(0, maxWidth);
 		if (isAnyEmpty(cs, abbrevMarker)) return cs;
 
@@ -968,7 +980,7 @@ public abstract class CharSequenceUtils {
 	 */
 	public static CharSequence center(CharSequence cs, int size, CharSequence padStr) {
 		if (nonNull(cs) && size > 0) {
-			if (isNullOrEmpty(padStr)) padStr = SPACE;
+			if (isNullOrEmpty(padStr)) padStr = SPACE_CS;
 
 			int strLen = cs.length();
 			int pads = size - strLen;
@@ -990,7 +1002,7 @@ public abstract class CharSequenceUtils {
 		if (isNullOrEmpty(cs)) return cs;
 		if (cs.length() == 1) {
 			char ch = cs.charAt(0);
-			return ch != '\r' && ch != '\n' ? cs : EMPTY;
+			return ch != '\r' && ch != '\n' ? cs : EMPTY_CS;
 		}
 		int lastIdx = cs.length() - 1;
 		char last = cs.charAt(lastIdx);
@@ -1011,7 +1023,7 @@ public abstract class CharSequenceUtils {
 		if (isNull(cs)) return null;
 
 		int strLen = cs.length();
-		if (strLen < 2) return EMPTY;
+		if (strLen < 2) return EMPTY_CS;
 
 		int lastIdx = strLen - 1;
 		CharSequence ret = cs.subSequence(0, lastIdx);
@@ -1295,7 +1307,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static CharSequence repeat(char ch, int repeat) {
-		if (repeat <= 0) return EMPTY;
+		if (repeat <= 0) return EMPTY_CS;
 		char[] buffer = new char[repeat];
 		Arrays.fill(buffer, ch);
 		return new String(buffer);
@@ -1339,7 +1351,7 @@ public abstract class CharSequenceUtils {
 	public static CharSequence leftPad(CharSequence cs, int size, CharSequence padCs) {
 		if (isNull(cs)) return null;
 
-		if (isNullOrEmpty(padCs)) padCs = SPACE;
+		if (isNullOrEmpty(padCs)) padCs = SPACE_CS;
 
 		int padLen = padCs.length();
 		int strLen = cs.length();
@@ -1397,7 +1409,7 @@ public abstract class CharSequenceUtils {
 	 */
 	public static CharSequence rightPad(CharSequence cs, int size, CharSequence padCs) {
 		if (isNull(cs)) return null;
-		if (isNullOrEmpty(padCs)) padCs = EMPTY;
+		if (isNullOrEmpty(padCs)) padCs = EMPTY_CS;
 
 		int padLen = padCs.length();
 		int strLen = cs.length();
@@ -1569,7 +1581,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.2.0
 	 */
 	public static CharSequence join(Object delimiter, Object... elements) {
-		if (isNull(delimiter) || isNull(elements) || elements.length == 0) return EMPTY;
+		if (isNull(delimiter) || isNull(elements) || elements.length == 0) return EMPTY_CS;
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < elements.length; i++) {
 			if (i > 0) sb.append(delimiter);
@@ -1586,7 +1598,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.2.0
 	 */
 	public static CharSequence join(Object delimiter, Iterable<?> elements) {
-		if (isNull(delimiter) || isNull(elements)) return EMPTY;
+		if (isNull(delimiter) || isNull(elements)) return EMPTY_CS;
 		StringBuilder sb = new StringBuilder();
 		Iterator<?> it = elements.iterator();
 		while (it.hasNext()) {
