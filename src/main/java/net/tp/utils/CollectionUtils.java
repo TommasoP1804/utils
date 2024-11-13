@@ -24,6 +24,16 @@ public abstract class CollectionUtils {
 	}
 
 	/**
+	 * Checks if a given map is not null and not empty.
+	 * @param map the map to check
+	 * @return {@code true} if the map is not null and not empty, {@code false} otherwise
+	 * @since 1.3.0
+	 */
+	public static boolean isNullOrEmpty(Map<?, ?> map) {
+		return isNull(map) || map.isEmpty();
+	}
+
+	/**
 	 * Checks if a given collection is not null and not empty.
 	 *
 	 * @param collection the collection to check
@@ -32,6 +42,16 @@ public abstract class CollectionUtils {
 	 */
 	public static boolean isNotEmpty(Collection<?> collection) {
 		return !isNullOrEmpty(collection);
+	}
+
+	/**
+	 * Checks if a given map is not null and not empty.
+	 * @param map the map to check
+	 * @return {@code true} if the map is not null and not empty, {@code false} otherwise
+	 * @since 1.3.0
+	 */
+	public static boolean isNotEmpty(Map<?, ?> map) {
+		return !isNullOrEmpty(map);
 	}
 
 	/**
@@ -174,6 +194,44 @@ public abstract class CollectionUtils {
 	}
 
 	/**
+	 * Returns the intersection of two maps.
+	 *
+	 * @param a the first map
+	 * @param b the second map
+	 * @param <K> the type of the keys
+	 * @param <V> the type of the values
+	 * @return the intersection of the two maps
+	 * @since 1.3.0
+	 */
+	public static <K, V> Map<K, V> intersection(Map<K, V> a, Map<K, V> b) {
+		Map<K, V> result = new HashMap<>();
+		for (Map.Entry<K, V> entry : requireNonNull(a).entrySet()) {
+			if (b.containsKey(entry.getKey()) && b.get(entry.getKey()).equals(entry.getValue())) {
+				result.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Returns the intersection of multiple maps.
+	 *
+	 * @param maps the maps
+	 * @param <K> the type of the keys
+	 * @param <V> the type of the values
+	 * @return the intersection of the maps
+	 * @since 1.3.0
+	 */
+	@SafeVarargs
+	public static <K, V> Map<K, V> intersection(Map<K, V>... maps) {
+		Map<K, V> result = requireNonNull(maps)[0];
+		for (int i = 1; i < maps.length; ++i) {
+			result = intersection(result, maps[i]);
+		}
+		return result;
+	}
+
+	/**
 	 * Returns the subtraction of two collections.
 	 *
 	 * @param a the first collection
@@ -196,10 +254,47 @@ public abstract class CollectionUtils {
 	 * @return the subtraction of the collections
 	 * @since 1.0.0
 	 */
+	@SafeVarargs
 	public static <E> Collection<E> subtract(Collection<E>... collections) {
 		Collection<E> result = requireNonNull(collections)[0];
 		for (int i = 1; i < collections.length; ++i) {
 			result = subtract(result, collections[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Returns the subtraction of two maps.
+	 *
+	 * @param a the first map (minuend)
+	 * @param b the second map (subtrahend)
+	 * @param <K> the type of the keys
+	 * @param <V> the type of the values
+	 * @return the subtraction of the two maps
+	 * @since 1.3.0
+	 */
+	public static <K, V> Map<K, V> subtract(Map<K, V> a, Map<K, V> b) {
+		Map<K, V> result = new HashMap<>(requireNonNull(a));
+		for (Map.Entry<K, V> entry : requireNonNull(b).entrySet()) {
+			result.remove(entry.getKey(), entry.getValue());
+		}
+		return result;
+	}
+
+	/**
+	 * Returns the subtraction of multiple maps.
+	 *
+	 * @param maps the maps
+	 * @param <K> the type of the keys
+	 * @param <V> the type of the values
+	 * @return the subtraction of the maps
+	 * @since 1.3.0
+	 */
+	@SafeVarargs
+	public static <K, V> Map<K, V> subtract(Map<K, V>... maps) {
+		Map<K, V> result = requireNonNull(maps)[0];
+		for (int i = 1; i < maps.length; ++i) {
+			result = subtract(result, maps[i]);
 		}
 		return result;
 	}
@@ -258,8 +353,24 @@ public abstract class CollectionUtils {
 	 * @return {@code true} if the collection contains all the elements, {@code false} otherwise
 	 * @since 1.2.0
 	 */
+	@SafeVarargs
 	public static <E> boolean containsAll(Collection<E> collection, E... elements) {
 		return requireNonNull(collection).containsAll(List.of(requireNonNull(elements)));
+	}
+
+	/**
+	 * Checks if a map contains all the given keys.
+	 *
+	 * @param map the map to check
+	 * @param elements the keys to check
+	 * @param <K> the type of the keys
+	 * @param <V> the type of the values
+	 * @return {@code true} if the map contains all the keys, {@code false} otherwise
+	 * @since 1.3.0
+	 */
+	@SafeVarargs
+	public static <K, V> boolean containsAllKeys(Map<K, V> map, K... elements) {
+		return requireNonNull(map).keySet().containsAll(List.of(requireNonNull(elements)));
 	}
 
 	/**
@@ -277,6 +388,21 @@ public abstract class CollectionUtils {
 	}
 
 	/**
+	 * Checks if a map contains any of the given keys.
+	 *
+	 * @param map the map to check
+	 * @param elements the keys to check
+	 * @param <K> the type of the keys
+	 * @param <V> the type of the values
+	 * @return {@code true} if the map contains any of the keys, {@code false} otherwise
+	 * @since 1.3.0
+	 */
+	@SafeVarargs
+	public static <K, V> boolean containsAnyKeys(Map<K, V> map, K... elements) {
+		return !intersection(requireNonNull(map).keySet(), List.of(elements)).isEmpty();
+	}
+
+	/**
 	 * Checks if a collection contains none of the given elements.
 	 *
 	 * @param collection the collection to check
@@ -285,8 +411,24 @@ public abstract class CollectionUtils {
 	 * @return {@code true} if the collection contains none of the elements, {@code false} otherwise
 	 * @since 1.2.0
 	 */
+	@SafeVarargs
 	public static <E> boolean containsNone(Collection<E> collection, E... elements) {
 		return intersection(collection, List.of(elements)).isEmpty();
+	}
+
+	/**
+	 * Checks if a map contains none of the given keys.
+	 *
+	 * @param map the map to check
+	 * @param elements the keys to check
+	 * @param <K> the type of the keys
+	 * @param <V> the type of the values
+	 * @return {@code true} if the map contains none of the keys, {@code false} otherwise
+	 * @since 1.3.0
+	 */
+	@SafeVarargs
+	public static <K, V> boolean containsNoneKeys(Map<K, V> map, K... elements) {
+		return intersection(requireNonNull(map).keySet(), List.of(elements)).isEmpty();
 	}
 
 	/**
