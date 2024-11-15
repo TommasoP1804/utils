@@ -1,9 +1,9 @@
 -classpath 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\build\\classes\\java\\main;C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\build\\resources\\main'
 -d 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\build\\docs\\javadoc'
--doctitle 'utils 1.3.0 API'
+-doctitle 'utils 1.4.0 API'
 -notimestamp 
 -quiet 
--windowtitle 'utils 1.3.0 API'
+-windowtitle 'utils 1.4.0 API'
 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\Main.java'
 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\utils\\ArrayUtils.java'
 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\utils\\CharSequenceUtils.java'
@@ -13,5 +13,6 @@
 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\utils\\classes\\Pair.java'
 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\utils\\classes\\Triple.java'
 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\utils\\CollectionUtils.java'
+'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\utils\\MethodUtils.java'
 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\utils\\NumberUtils.java'
 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\utils\\ObjectUtils.java'

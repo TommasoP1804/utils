@@ -2,6 +2,7 @@ package net.tp.utils;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
 
 import static java.util.Objects.*;
@@ -64,6 +65,21 @@ public abstract class CharSequenceUtils {
 	}
 
 	/**
+	 * Return the given char sequence if it is not null and not empty, otherwise throw an exception.
+	 * @param cs the char sequence to check
+	 * @param exceptionSupplier the supplier of the exception
+	 * @param <X> the type of the exception
+	 * @return the given char sequence if it is not null and not empty
+	 * @throws X if the default char sequence is null or empty
+	 * @since 1.4.0
+	 */
+	public static <X extends Throwable> CharSequence requireNonEmptyElseThrow(CharSequence cs, Supplier<X> exceptionSupplier) throws X {
+		if (isNullOrEmpty(cs)) throw requireNonNull(exceptionSupplier).get();
+		return cs;
+	}
+
+
+	/**
 	 * Return the given char sequence if it is not null and not empty, otherwise return the default char sequence.
 	 * @param cs the char sequence to check
 	 * @param defaultCs the default char sequence
@@ -107,6 +123,20 @@ public abstract class CharSequenceUtils {
 	 */
 	public static CharSequence requireNonBlank(CharSequence cs, String message) {
 		if (requireNonNull(cs).toString().isBlank()) throw new IllegalArgumentException(message);
+		return cs;
+	}
+
+	/**
+	 * Return the given char sequence if it is not blank, otherwise throw an exception.
+	 * @param cs the char sequence to check
+	 * @param exceptionSupplier the supplier of the exception
+	 * @param <X> the type of the exception
+	 * @return the given char sequence if it is not blank
+	 * @throws X if the default char sequence is blank
+	 * @since 1.4.0
+	 */
+	public static <X extends Throwable> CharSequence requireNonBlankElseThrow(CharSequence cs, Supplier<X> exceptionSupplier) throws X {
+		if (requireNonNull(cs).toString().isBlank()) throw requireNonNull(exceptionSupplier).get();
 		return cs;
 	}
 
@@ -216,9 +246,7 @@ public abstract class CharSequenceUtils {
 	 */
 	public static boolean[] isEachNotBlank(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isNotBlank(css[i]);
-		}
+		for (int i = 0; i < css.length; i++) result[i] = isNotBlank(css[i]);
 		return result;
 	}
 
@@ -1607,6 +1635,4 @@ public abstract class CharSequenceUtils {
 		}
 		return sb;
 	}
-
-
 }

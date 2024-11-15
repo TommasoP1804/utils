@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.function.Supplier;
 
 import static java.util.Objects.*;
+import static net.tp.utils.MethodUtils.noOp;
 
 /**
  * Utility class for collections.
@@ -327,7 +328,7 @@ public abstract class CollectionUtils {
 	 * @since 1.0.0
 	 */
 	public static <E> List<E> iteratorToList(Iterator<E> it) {
-		if (isNull(it)) throw new NullPointerException("it cannot be null.");
+		if (isNull(it)) throw new NullPointerException("Iterator cannot be null.");
 		else {
 			List<E> list = new ArrayList<>();
 			while(it.hasNext()) list.add(it.next());
@@ -340,6 +341,7 @@ public abstract class CollectionUtils {
 			Integer o = freqMap.get(obj);
 			if (nonNull(o)) return o;
 		} catch (NoSuchElementException | NullPointerException e) {
+			noOp();
 		}
 		return 0;
 	}
