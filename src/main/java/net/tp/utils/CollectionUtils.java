@@ -3,8 +3,8 @@ package net.tp.utils;
 import java.util.*;
 import java.util.function.Supplier;
 
-import static java.util.Objects.*;
 import static net.tp.utils.MethodUtils.noOp;
+import static java.util.Objects.*;
 
 /**
  * Utility class for collections.
@@ -53,6 +53,114 @@ public abstract class CollectionUtils {
 	 */
 	public static boolean isNotEmpty(Map<?, ?> map) {
 		return !isNullOrEmpty(map);
+	}
+
+	/**
+	 * Checks if a given collection is null or empty and throws an exception if it is.
+	 *
+	 * @param collection the collection to check
+	 * @return {@code true} if the collection is not null and not empty
+	 * @throws IllegalArgumentException if the collection is null or empty
+	 * @since 1.5.1
+	 */
+	public static <T extends Collection<?>> T requireNonEmpty(T collection) {
+		if (isNullOrEmpty(collection)) throw new IllegalArgumentException();
+		return collection;
+	}
+
+	/**
+	 * Checks if a given map is null or empty and throws an exception if it is.
+	 *
+	 * @param map the map to check
+	 * @return {@code true} if the map is not null and not empty
+	 * @throws IllegalArgumentException if the map is null or empty
+	 * @since 1.5.1
+	 */
+	public static <T extends Map<?, ?>> T requireNonEmpty(T map) {
+		if (isNullOrEmpty(map)) throw new IllegalArgumentException();
+		return map;
+	}
+
+	/**
+	 * Checks if a given collection is null or empty and throws an exception with the given message if it is.
+	 *
+	 * @param collection the collection to check
+	 * @param message the message of the exception
+	 * @return {@code true} if the collection is not null and not empty
+	 * @throws IllegalArgumentException if the collection is null or empty
+	 * @since 1.5.1
+	 */
+	public static <T extends Collection<?>> T requireNonEmpty(T collection, String message) {
+		if (isNullOrEmpty(collection)) throw new IllegalArgumentException(message);
+		return collection;
+	}
+
+	/**
+	 * Checks if a given map is null or empty and throws an exception with the given message if it is.
+	 *
+	 * @param map the map to check
+	 * @param message the message of the exception
+	 * @return {@code true} if the map is not null and not empty
+	 * @throws IllegalArgumentException if the map is null or empty
+	 * @since 1.5.1
+	 */
+	public static <T extends Map<?, ?>> T requireNonEmpty(T map, String message) {
+		if (isNullOrEmpty(map)) throw new IllegalArgumentException(message);
+		return map;
+	}
+
+	/**
+	 * Checks if a given collection is null or empty and returns the given default value if it is.
+	 * @param collection the collection to check
+	 * @param defaultValue the default value to return
+	 * @return the collection if it is not null or empty, the default value otherwise
+	 * @param <T> the type of the collection
+	 * @since 1.5.1
+	 */
+	public static <T extends Collection<?>> T requireNonEmptyElse(T collection, T defaultValue) {
+		return isNullOrEmpty(collection) ? defaultValue : collection;
+	}
+
+	/**
+	 * Checks if a given map is null or empty and returns the given default value if it is.
+	 * @param map the map to check
+	 * @param defaultValue the default value to return
+	 * @return the map if it is not null or empty, the default value otherwise
+	 * @param <T> the type of the map
+	 * @since 1.5.1
+	 */
+	public static <T extends Map<?, ?>> T requireNonEmptyElse(T map, T defaultValue) {
+		return isNullOrEmpty(map) ? defaultValue : map;
+	}
+
+	/**
+	 * Checks if a given collection is null or empty and throws an exception.
+	 * @param collection the collection to check
+	 * @param exceptionSupplier the supplier of the exception to throw
+	 * @return the collection if it is not null or empty
+	 * @param <T> the type of the collection
+	 * @param <X> the type of the exception
+	 * @throws X if the collection is null or empty
+	 * @since 1.5.1
+	 */
+	public static <T extends Collection<?>, X extends Throwable> T requireNonEmptyElseThrow(T collection, Supplier<X> exceptionSupplier) throws X {
+		if (isNullOrEmpty(collection)) throw exceptionSupplier.get();
+		return collection;
+	}
+
+	/**
+	 * Checks if a given map is null or empty and throws an exception.
+	 * @param map the map to check
+	 * @param exceptionSupplier the supplier of the exception to throw
+	 * @return the map if it is not null or empty
+	 * @param <T> the type of the map
+	 * @param <X> the type of the exception
+	 * @throws X if the map is null or empty
+	 * @since 1.5.1
+	 */
+	public static <T extends Map<?, ?>, X extends Throwable> T requireNonEmptyElseThrow(T map, Supplier<X> exceptionSupplier) throws X {
+		if (isNullOrEmpty(map)) throw exceptionSupplier.get();
+		return map;
 	}
 
 	/**
