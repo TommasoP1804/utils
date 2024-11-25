@@ -4,8 +4,8 @@ plugins {
 }
 
 group = 'net.tp'
-version = '1.4.1'
-//20241121T083859Z
+version = '1.5.0'
+//20241125T095023Z
 
 repositories {
     mavenCentral()
@@ -32,7 +32,7 @@ publishing {
             from components.java
             groupId = 'net.tp'
             artifactId = 'utils'
-            version = '1.4.1'
+            version = '1.5.0'
         }
     }
 }
