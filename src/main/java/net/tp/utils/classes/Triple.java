@@ -30,7 +30,7 @@ public class Triple<L, M, R> implements Serializable {
 	/**
 	 * If the triple is immutable.
 	 */
-	private boolean immutable = false;
+	private boolean immutable;
 
 	/**
 	 * Creates a new triple with the given left, middle, and right values.
@@ -44,6 +44,7 @@ public class Triple<L, M, R> implements Serializable {
 		this.left = left;
 		this.middle = middle;
 		this.right = right;
+		this.immutable = immutable;
 	}
 	/**
 	 * Makes the triple immutable.
@@ -177,7 +178,7 @@ public class Triple<L, M, R> implements Serializable {
 	 * @since 1.2.0
 	 */
 	public static <L, M, R> Triple<L, M, R> mutable(L left, M middle, R right) {
-		return new Triple<>(left, middle, right, false).immutable();
+		return new Triple<>(left, middle, right, false);
 	}
 	/**
 	 * Creates a new triple with the given left, middle, and right values if they are not null and makes it immutable.
