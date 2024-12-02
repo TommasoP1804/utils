@@ -21,8 +21,27 @@ public abstract class NumberUtils {
 	 * @param <T> the type of the number
 	 * @return {@code true} if the number is a non-decimal number, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #nonDecimalNumber(Number, boolean)} instead
 	 */
+	@Deprecated
 	public static <T extends Number> boolean isNonDecimalNumber(T number, boolean classBased) {
+		if (number instanceof Integer || number instanceof Long || number instanceof Short || number instanceof Byte || number instanceof BigInteger)
+			return true;
+		if (number instanceof Double) return !classBased && ((Double) number) % 1 == 0;
+		if (number instanceof Float) return !classBased && ((Float) number) % 1 == 0;
+		return false;
+	}
+
+	/**
+	 * Checks if a given number is a non-decimal number.
+	 *
+	 * @param number the number to check
+	 * @param classBased if the check should be based on the class of the number
+	 * @param <T> the type of the number
+	 * @return {@code true} if the number is a non-decimal number, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static <T extends Number> boolean nonDecimalNumber(T number, boolean classBased) {
 		if (number instanceof Integer || number instanceof Long || number instanceof Short || number instanceof Byte || number instanceof BigInteger)
 			return true;
 		if (number instanceof Double) return !classBased && ((Double) number) % 1 == 0;
@@ -37,8 +56,22 @@ public abstract class NumberUtils {
 	 * @param <T> the type of the number
 	 * @return {@code true} if the number is a non-decimal number, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #nonDecimalNumber(Number)} instead
 	 */
+	@Deprecated
 	public static <T extends Number> boolean isNonDecimalNumber(T number) {
+		return isNonDecimalNumber(number, false);
+	}
+
+	/**
+	 * Checks if a given number is a non-decimal number (also a double or a float with .0 is non-decimal number, for classBased see {@link NumberUtils#isNonDecimalNumber(Number, boolean)}).
+	 *
+	 * @param number the number to check
+	 * @param <T> the type of the number
+	 * @return {@code true} if the number is a non-decimal number, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static <T extends Number> boolean nonDecimalNumber(T number) {
 		return isNonDecimalNumber(number, false);
 	}
 
@@ -109,7 +142,7 @@ public abstract class NumberUtils {
 	 * @since 1.0.0
 	 */
 	public static <T extends Number> boolean isPrime(T number) {
-		if (isNonDecimalNumber(number)) {
+		if (nonDecimalNumber(number)) {
 			if (number.longValue() <= 1) return false;
 			for (int i = 2; i <= Math.sqrt(number.longValue()); i++)
 				if (number.longValue() % i == 0) return false;
@@ -128,7 +161,7 @@ public abstract class NumberUtils {
 	 * @since 1.0.0
 	 */
 	public static <T1 extends Number, T2 extends Number> long gcd(T1 a, T2 b) {
-		if (isNonDecimalNumber(a) && isNonDecimalNumber(b)) {
+		if (nonDecimalNumber(a) && nonDecimalNumber(b)) {
 			if (b.longValue() == 0) return a.longValue();
 			return gcd(b.longValue(), a.longValue() % b.longValue());
 		} else throw new IllegalArgumentException("Unsupported types.");
@@ -147,13 +180,12 @@ public abstract class NumberUtils {
 		if (isNull(numbers) || numbers.length == 0) {
 			throw new IllegalArgumentException("At least 1 number.");
 		}
-		if (Arrays.stream(numbers).anyMatch(num -> !isNonDecimalNumber(num))) {
+		if (Arrays.stream(numbers).anyMatch(num -> !nonDecimalNumber(num))) {
 			throw new IllegalArgumentException("Unsupported types.");
 		}
-		long lcm = Arrays.stream(numbers)
+		return Arrays.stream(numbers)
 				.mapToLong(Number::longValue)
 				.reduce(1, (a, b) -> (a * b) / gcd(a, b));
-		return lcm;
 	}
 
 	/**
@@ -177,7 +209,7 @@ public abstract class NumberUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isPalindrome(Number number) {
-		if (isNonDecimalNumber(number)) {
+		if (nonDecimalNumber(number)) {
 			long reversed = 0, original = number.longValue(), remainder;
 			while (number.longValue() != 0) {
 				remainder = number.longValue() % 10;
@@ -196,7 +228,7 @@ public abstract class NumberUtils {
 	 * @since 1.0.0
 	 */
 	public static long sumOfDigits(Number number) {
-		if (isNonDecimalNumber(number)) {
+		if (nonDecimalNumber(number)) {
 			long sum = 0;
 			number = Math.abs(number.longValue());
 			while (number.longValue() != 0) {
@@ -215,7 +247,7 @@ public abstract class NumberUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isPerfectNumber(Number number) {
-		if (isNonDecimalNumber(number)) {
+		if (nonDecimalNumber(number)) {
 			long sum = 1;
 			for (int i = 2; i <= Math.sqrt(number.longValue()); i++) {
 				if (number.longValue() % i == 0) {
@@ -241,7 +273,7 @@ public abstract class NumberUtils {
 	 * @since 1.0.0
 	 */
 	public static <T extends Number> Number factorial(T number) {
-		if (isNonDecimalNumber(number)) {
+		if (nonDecimalNumber(number)) {
 			if (number.longValue() < 0) throw new IllegalArgumentException("Number must be non-negative.");
 			if (number.longValue() <= 20) {
 				long result = 1;

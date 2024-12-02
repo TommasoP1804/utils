@@ -2,7 +2,7 @@ package net.tp.utils;
 
 import java.util.Objects;
 
-import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 /**
  * Utility class for characters.
@@ -166,6 +166,7 @@ public abstract class CharUtils {
 	 * @param ch the char
 	 * @param defaultValue the default value if the char is not an ascii numeric
 	 * @return the int value
+	 * @since 1.0.0
 	 */
 	public static int toIntValue(char ch, int defaultValue) {
 		return isAsciiNumeric(ch) ? ch - 48 : defaultValue;
@@ -186,8 +187,9 @@ public abstract class CharUtils {
 	 * @param ch the Character
 	 * @param defaultValue the default value if the Character is null
 	 * @return the int value
+	 * @since 1.6.1
 	 */
 	public static int toIntValue(Character ch, int defaultValue) {
-		return isNull(ch) ? toIntValue(ch, defaultValue) : defaultValue;
+		return nonNull(ch) ? toIntValue(toPrimitive(ch), defaultValue) : defaultValue;
 	}
 }

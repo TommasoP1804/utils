@@ -87,7 +87,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static CharSequence requireNonEmptyElse(CharSequence cs, CharSequence defaultCs) {
-		return isNotEmpty(cs) ? cs : defaultCs;
+		return nonEmpty(cs) ? cs : defaultCs;
 	}
 
 	/**
@@ -179,8 +179,21 @@ public abstract class CharSequenceUtils {
 	 * @param cs the string to check
 	 * @return {@code true} if the string is not null, not empty, and not only contains whitespace, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #nonBlank(CharSequence)} instead
 	 */
+	@Deprecated
 	public static boolean isNotBlank(CharSequence cs) {
+		return !isNullOrBlank(cs);
+	}
+
+	/**
+	 * Checks if a given string is not null, not empty, and not only contains whitespace.
+	 *
+	 * @param cs the string to check
+	 * @return {@code true} if the string is not null, not empty, and not only contains whitespace, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean nonBlank(CharSequence cs) {
 		return !isNullOrBlank(cs);
 	}
 
@@ -189,8 +202,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are all null or blank, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allNullOrBlank(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllNullOrBlank(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isNullOrBlank);
+	}
+
+	/**
+	 * Checks if given char sequences is all null or blank.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are all null or blank, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allNullOrBlank(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isNullOrBlank);
 	}
 
@@ -199,8 +224,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is blank, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyNullOrBlank(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyNullOrBlank(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNullOrBlank);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is blank.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is blank, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyNullOrBlank(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNullOrBlank);
 	}
 
@@ -209,8 +246,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is null or blank, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachNullOrBlank(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachNullOrBlank(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isNullOrBlank(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is blank and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is null or blank, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachNullOrBlank(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isNullOrBlank(css[i]);
@@ -223,9 +276,21 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are all not null or blank, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allNonBlank(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllNotBlank(CharSequence... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isNotBlank);
+		return Arrays.stream(css).allMatch(CharSequenceUtils::nonBlank);
+	}
+
+	/**
+	 * Checks if given char sequences is all not null or blank.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are all not null or blank, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allNonBlank(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::nonBlank);
 	}
 
 	/**
@@ -233,9 +298,21 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is not blank, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyNonBlank(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyNotBlank(CharSequence... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNotBlank);
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::nonBlank);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is not blank.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is not blank, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyNonBlank(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::nonBlank);
 	}
 
 	/**
@@ -243,10 +320,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is not null or blank, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachNonBlank(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachNotBlank(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) result[i] = isNotBlank(css[i]);
+		for (int i = 0; i < css.length; i++) result[i] = nonBlank(css[i]);
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is not blank and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is not null or blank, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachNonBlank(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) result[i] = nonBlank(css[i]);
 		return result;
 	}
 
@@ -267,8 +358,21 @@ public abstract class CharSequenceUtils {
 	 * @param cs the char sequence to check
 	 * @return {@code true} if the char sequence is not null and not empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #nonEmpty(CharSequence)} instead
 	 */
+	@Deprecated
 	public static boolean isNotEmpty(CharSequence cs) {
+		return !isNullOrEmpty(cs);
+	}
+
+	/**
+	 * Checks if a given char sequence is not null and not empty.
+	 *
+	 * @param cs the char sequence to check
+	 * @return {@code true} if the char sequence is not null and not empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean nonEmpty(CharSequence cs) {
 		return !isNullOrEmpty(cs);
 	}
 
@@ -277,8 +381,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are all null or empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allNullOrEmpty(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllNullOrEmpty(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isNullOrEmpty);
+	}
+
+	/**
+	 * Checks if given char sequences is all null or empty.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are all null or empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allNullOrEmpty(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isNullOrEmpty);
 	}
 
@@ -287,8 +403,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyNullOrEmpty(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyNullOrEmpty(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNullOrEmpty);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is empty.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyNullOrEmpty(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNullOrEmpty);
 	}
 
@@ -297,8 +425,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is null or empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachNullOrEmpty(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachNullOrEmpty(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isNullOrEmpty(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is null or empty and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is null or empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachNullOrEmpty(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isNullOrEmpty(css[i]);
@@ -311,8 +455,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are all empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allEmpty(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllEmpty(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequence::isEmpty);
+	}
+
+	/**
+	 * Checks if given char sequences is all empty.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are all empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allEmpty(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequence::isEmpty);
 	}
 
@@ -321,8 +477,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyEmpty(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyEmpty(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequence::isEmpty);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is empty.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyEmpty(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequence::isEmpty);
 	}
 
@@ -331,8 +499,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachEmpty(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachEmpty(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = css[i].isEmpty();
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is empty and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachEmpty(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = css[i].isEmpty();
@@ -345,9 +529,21 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are all not null or empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allNonEmpty(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllNotEmpty(CharSequence... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isNotEmpty);
+		return Arrays.stream(css).allMatch(CharSequenceUtils::nonEmpty);
+	}
+
+	/**
+	 * Checks if given char sequences is all not null or empty.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are all not null or empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allNonEmpty(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::nonEmpty);
 	}
 
 	/**
@@ -355,9 +551,21 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is not empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyNonEmpty(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyNotEmpty(CharSequence... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNotEmpty);
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::nonEmpty);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is not empty.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is not empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyNonEmpty(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::nonEmpty);
 	}
 
 	/**
@@ -365,12 +573,27 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is not empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachNonEmpty(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachNotEmpty(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
-			result[i] = isNotEmpty(css[i]);
+			result[i] = nonEmpty(css[i]);
 		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is not empty and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is not empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachNonEmpty(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++)
+			result[i] = nonEmpty(css[i]);
 		return result;
 	}
 
@@ -381,7 +604,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isLowerCase(CharSequence cs) {
-		return isNotEmpty(cs) && cs.chars().allMatch(Character::isLowerCase);
+		return nonEmpty(cs) && cs.chars().allMatch(Character::isLowerCase);
 	}
 
 	/**
@@ -389,8 +612,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are all lower case, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allLowerCase(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllLowerCase(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isLowerCase);
+	}
+
+	/**
+	 * Checks if given char sequences is all lower case.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are all lower case, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allLowerCase(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isLowerCase);
 	}
 
@@ -399,8 +634,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is lower case, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyLowerCase(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyLowerCase(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isLowerCase);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is lower case.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is lower case, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyLowerCase(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isLowerCase);
 	}
 
@@ -409,8 +656,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is lower case, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachLowerCase(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachLowerCase(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isLowerCase(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is lower case and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is lower case, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachLowerCase(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isLowerCase(css[i]);
@@ -425,7 +688,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isUpperCase(CharSequence cs) {
-		return isNotEmpty(cs) && cs.chars().allMatch(Character::isUpperCase);
+		return nonEmpty(cs) && cs.chars().allMatch(Character::isUpperCase);
 	}
 
 	/**
@@ -433,8 +696,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are all upper case, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allUpperCase(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllUpperCase(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isUpperCase);
+	}
+
+	/**
+	 * Checks if given char sequences is all upper case.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are all upper case, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allUpperCase(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isUpperCase);
 	}
 
@@ -443,8 +718,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is upper case, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyUpperCase(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyUpperCase(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isUpperCase);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is upper case.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is upper case, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyUpperCase(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isUpperCase);
 	}
 
@@ -453,8 +740,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is upper case, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachUpperCase(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachUpperCase(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isUpperCase(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is upper case and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is upper case, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachUpperCase(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isUpperCase(css[i]);
@@ -469,7 +772,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isMixedCase(CharSequence cs) {
-		return isNotEmpty(cs) && !isLowerCase(cs) && !isUpperCase(cs);
+		return nonEmpty(cs) && !isLowerCase(cs) && !isUpperCase(cs);
 	}
 
 	/**
@@ -477,18 +780,43 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are mixed case, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allMixedCase(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllMixedCase(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isMixedCase);
 	}
+
+	/**
+	 * Checks if given char sequences is mixed case.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are mixed case, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allMixedCase(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isMixedCase);
+	}
+
 
 	/**
 	 * Checks if in the given char sequences there is at least one char sequence is mixed case.
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is mixed case, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyMixedCase(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyMixedCase(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isMixedCase);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is mixed case.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is mixed case, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyMixedCase(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isMixedCase);
 	}
 
@@ -497,7 +825,9 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is mixed case, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachMixedCase(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachMixedCase(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
@@ -507,13 +837,28 @@ public abstract class CharSequenceUtils {
 	}
 
 	/**
+	 * Checks if given char sequences is mixed case and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is mixed case, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachMixedCase(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isMixedCase(css[i]);
+		}
+		return result;
+	}
+
+
+	/**
 	 * Checks if a given char sequence is alphabetic.
 	 * @param cs the char sequence to check
 	 * @return {@code true} if the char sequence is alphabetic, {@code false} otherwise
 	 * @since 1.0.0
 	 */
 	public static boolean isAlphabetic(CharSequence cs) {
-		return isNotEmpty(cs) && cs.chars().allMatch(Character::isLetter);
+		return nonEmpty(cs) && cs.chars().allMatch(Character::isLetter);
 	}
 
 	/**
@@ -521,8 +866,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are alphabetic, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allAlphabetic(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllAlphabetic(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphabetic);
+	}
+
+	/**
+	 * Checks if given char sequences is alphabetic.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are alphabetic, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allAlphabetic(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphabetic);
 	}
 
@@ -531,8 +888,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is alphabetic, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyAlphabetic(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyAlphabetic(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphabetic);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is alphabetic.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is alphabetic, {@code false} otherwise
+	 * @since 1.0.0
+	 */
+	public static boolean anyAlphabetic(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphabetic);
 	}
 
@@ -541,8 +910,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphabetic, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachAlphabetic(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachAlphabetic(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isAlphabetic(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is alphabetic and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphabetic, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachAlphabetic(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isAlphabetic(css[i]);
@@ -557,7 +942,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isAlphabeticSpace(CharSequence cs) {
-		return isNotEmpty(cs) && cs.chars().allMatch(c -> Character.isLetter(c) || Character.isWhitespace(c));
+		return nonEmpty(cs) && cs.chars().allMatch(c -> Character.isLetter(c) || Character.isWhitespace(c));
 	}
 
 	/**
@@ -565,8 +950,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are alphabetic or space, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allAlphabeticSpace(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllAlphabeticSpace(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphabeticSpace);
+	}
+
+	/**
+	 * Checks if given char sequences is alphabetic or space.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are alphabetic or space, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allAlphabeticSpace(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphabeticSpace);
 	}
 
@@ -575,8 +972,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is alphabetic or space, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyAlphabeticSpace(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyAlphabeticSpace(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphabeticSpace);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is alphabetic or space.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is alphabetic or space, {@code false} otherwise
+	 * @since 1.0.0
+	 */
+	public static boolean anyAlphabeticSpace(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphabeticSpace);
 	}
 
@@ -585,8 +994,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphabetic or space, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachAlphabeticSpace(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachAlphabeticSpace(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isAlphabeticSpace(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is alphabetic or space and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphabetic or space, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachAlphabeticSpace(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isAlphabeticSpace(css[i]);
@@ -601,7 +1026,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isAlphanumeric(CharSequence cs) {
-		return isNotEmpty(cs) && cs.chars().allMatch(Character::isLetterOrDigit);
+		return nonEmpty(cs) && cs.chars().allMatch(Character::isLetterOrDigit);
 	}
 
 	/**
@@ -609,8 +1034,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are alphanumeric, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allAlphanumeric(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllAlphanumeric(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphanumeric);
+	}
+
+	/**
+	 * Checks if given char sequences is alphanumeric.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are alphanumeric, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allAlphanumeric(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphanumeric);
 	}
 
@@ -619,9 +1056,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is alphanumeric, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyAlphanumeric(CharSequence...)} instead
 	 */
-
+	@Deprecated
 	public static boolean isAnyAlphanumeric(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphanumeric);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is alphanumeric.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is alphanumeric, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyAlphanumeric(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphanumeric);
 	}
 
@@ -630,8 +1078,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphanumeric, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachAlphanumeric(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachAlphanumeric(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isAlphanumeric(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is alphanumeric and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphanumeric, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachAlphanumeric(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isAlphanumeric(css[i]);
@@ -646,7 +1110,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isAlphanumericSpace(CharSequence cs) {
-		return isNotEmpty(cs) && cs.chars().allMatch(c -> Character.isLetterOrDigit(c) || Character.isWhitespace(c));
+		return nonEmpty(cs) && cs.chars().allMatch(c -> Character.isLetterOrDigit(c) || Character.isWhitespace(c));
 	}
 
 	/**
@@ -654,8 +1118,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are alphanumeric or space, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allAlphanumericSpace(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllAlphanumericSpace(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphanumericSpace);
+	}
+
+	/**
+	 * Checks if given char sequences is alphanumeric or space.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are alphanumeric or space, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allAlphanumericSpace(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphanumericSpace);
 	}
 
@@ -664,8 +1140,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is alphanumeric or space, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyAlphanumericSpace(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyAlphanumericSpace(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphanumericSpace);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is alphanumeric or space.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is alphanumeric or space, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyAlphanumericSpace(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphanumericSpace);
 	}
 
@@ -674,8 +1162,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphanumeric or space, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachAlphanumericSpace(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachAlphanumericSpace(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isAlphanumericSpace(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is alphanumeric or space and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphanumeric or space, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachAlphanumericSpace(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isAlphanumericSpace(css[i]);
@@ -690,7 +1194,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isNumeric(CharSequence cs) {
-		return isNotEmpty(cs) && cs.chars().allMatch(Character::isDigit);
+		return nonEmpty(cs) && cs.chars().allMatch(Character::isDigit);
 	}
 
 	/**
@@ -698,8 +1202,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are numeric, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allNumeric(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllNumeric(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isNumeric);
+	}
+
+	/**
+	 * Checks if given char sequences is numeric.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are numeric, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allNumeric(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isNumeric);
 	}
 
@@ -708,8 +1224,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is numeric, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyNumeric(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyNumeric(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNumeric);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is numeric.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is numeric, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyNumeric(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNumeric);
 	}
 
@@ -718,8 +1246,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is numeric, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachNumeric(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachNumeric(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isNumeric(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is numeric and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is numeric, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachNumeric(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isNumeric(css[i]);
@@ -734,7 +1278,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isNumericSpace(CharSequence cs) {
-		return isNotEmpty(cs) && cs.chars().allMatch(c -> Character.isDigit(c) || Character.isWhitespace(c));
+		return nonEmpty(cs) && cs.chars().allMatch(c -> Character.isDigit(c) || Character.isWhitespace(c));
 	}
 
 	/**
@@ -742,8 +1286,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are numeric or space, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allNumericSpace(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllNumericSpace(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isNumericSpace);
+	}
+
+	/**
+	 * Checks if given char sequences is numeric or space.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are numeric or space, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allNumericSpace(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isNumericSpace);
 	}
 
@@ -752,8 +1308,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is numeric or space, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyNumericSpace(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyNumericSpace(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNumericSpace);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is numeric or space.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is numeric or space, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyNumericSpace(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNumericSpace);
 	}
 
@@ -762,8 +1330,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is numeric or space, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachNumericSpace(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachNumericSpace(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isNumericSpace(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is numeric or space and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is numeric or space, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachNumericSpace(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isNumericSpace(css[i]);
@@ -778,7 +1362,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isEmail(CharSequence cs) {
-		return isNotEmpty(cs) && Pattern.compile("^([\\w-.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$", CASE_INSENSITIVE).matcher(cs).matches();
+		return nonEmpty(cs) && Pattern.compile("^([\\w-.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$", CASE_INSENSITIVE).matcher(cs).matches();
 	}
 
 	/**
@@ -786,8 +1370,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are valid emails, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allEmail(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllEmail(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isEmail);
+	}
+
+	/**
+	 * Checks if given char sequences is a valid email.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are valid emails, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allEmail(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isEmail);
 	}
 
@@ -796,8 +1392,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is a valid email, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyEmail(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyEmail(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isEmail);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is a valid email.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is a valid email, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyEmail(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isEmail);
 	}
 
@@ -806,8 +1414,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is a valid email, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachEmail(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachEmail(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isEmail(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is a valid email and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is a valid email, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachEmail(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isEmail(css[i]);
@@ -822,7 +1446,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean isURL(CharSequence cs) {
-		return isNotEmpty(cs) && Pattern.compile("^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", CASE_INSENSITIVE).matcher(cs).matches();
+		return nonEmpty(cs) && Pattern.compile("^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", CASE_INSENSITIVE).matcher(cs).matches();
 	}
 
 	/**
@@ -830,8 +1454,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if all char sequences are valid URLs, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #allURL(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAllURL(CharSequence... css) {
+		return Arrays.stream(css).allMatch(CharSequenceUtils::isURL);
+	}
+
+	/**
+	 * Checks if given char sequences is a valid URL.
+	 * @param css the char sequences to check
+	 * @return {@code true} if all char sequences are valid URLs, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean allURL(CharSequence... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isURL);
 	}
 
@@ -840,8 +1476,20 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return {@code true} if at least one char sequence is a valid URL, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #anyURL(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean isAnyURL(CharSequence... css) {
+		return Arrays.stream(css).anyMatch(CharSequenceUtils::isURL);
+	}
+
+	/**
+	 * Checks if in the given char sequences there is at least one char sequence is a valid URL.
+	 * @param css the char sequences to check
+	 * @return {@code true} if at least one char sequence is a valid URL, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean anyURL(CharSequence... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isURL);
 	}
 
@@ -850,8 +1498,24 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is a valid URL, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated use {@link #eachURL(CharSequence...)} instead
 	 */
+	@Deprecated
 	public static boolean[] isEachURL(CharSequence... css) {
+		boolean[] result = new boolean[requireNonNull(css).length];
+		for (int i = 0; i < css.length; i++) {
+			result[i] = isURL(css[i]);
+		}
+		return result;
+	}
+
+	/**
+	 * Checks if given char sequences is a valid URL and put the result in an array.
+	 * @param css the char sequences to check
+	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is a valid URL, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean[] eachURL(CharSequence... css) {
 		boolean[] result = new boolean[requireNonNull(css).length];
 		for (int i = 0; i < css.length; i++) {
 			result[i] = isURL(css[i]);
@@ -869,9 +1533,9 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static CharSequence abbreviate(CharSequence cs, CharSequence abbrevMarker, int offset, int maxWidth) {
-		if (isNotEmpty(cs) && EMPTY_CS.equals(abbrevMarker) && maxWidth > 0)
+		if (nonEmpty(cs) && EMPTY_CS.equals(abbrevMarker) && maxWidth > 0)
 			return cs.subSequence(0, maxWidth);
-		if (isAnyEmpty(cs, abbrevMarker)) return cs;
+		if (anyEmpty(cs, abbrevMarker)) return cs;
 
 		int abbrevMarkerLength = abbrevMarker.length();
 		int minAbbrevWidth = abbrevMarkerLength + 1;
@@ -939,7 +1603,7 @@ public abstract class CharSequenceUtils {
 	 * @since 1.0.0
 	 */
 	public static CharSequence abbreviateMiddle(CharSequence cs, CharSequence middle, int length) {
-		if (!isAnyEmpty(cs, middle) && length < cs.length() && length >= middle.length() + 2) {
+		if (!anyEmpty(cs, middle) && length < cs.length() && length >= middle.length() + 2) {
 			int targetSting = length - middle.length();
 			int startOffset = targetSting / 2 + targetSting % 2;
 			int endOffset = cs.length() - targetSting / 2;
@@ -953,7 +1617,7 @@ public abstract class CharSequenceUtils {
 	 * Appends a suffix to a char sequence if it is missing.
 	 * @param cs the char sequence to append the suffix to
 	 * @param suffix the suffix to append
-	* @param suffixes the suffixes to check
+	 * @param suffixes the suffixes to check
 	 * @return the char sequence with the suffix appended
 	 */
 	public static CharSequence appendIfMissing(CharSequence cs, CharSequence suffix, CharSequence... suffixes) {

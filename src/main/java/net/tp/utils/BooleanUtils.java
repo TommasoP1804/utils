@@ -13,6 +13,26 @@ import static java.util.Objects.*;
  */
 public abstract class BooleanUtils {
 	/**
+	 * Check if the given {@link Boolean} object is true.
+	 * @param obj the object to check
+	 * @return true if the object is not null and true, false otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean isTrue(Boolean obj) {
+		return nonNull(obj) && obj.equals(TRUE);
+	}
+
+	/**
+	 * Check if the given {@link Boolean} object is false.
+	 * @param obj the object to check
+	 * @return true if the object is not null and false, false otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean isFalse(Boolean obj) {
+		return nonNull(obj) && obj.equals(FALSE);
+	}
+
+	/**
 	 * Check if the given object is null or true.
 	 * @param obj the object to check
 	 * @return true if the object is null or true, false otherwise

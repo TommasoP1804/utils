@@ -1,9 +1,9 @@
 -classpath 'C:\\Users\\tommaso.pastorelli\\Documents\\GitHub\\utils\\build\\classes\\java\\main;C:\\Users\\tommaso.pastorelli\\Documents\\GitHub\\utils\\build\\resources\\main'
 -d 'C:\\Users\\tommaso.pastorelli\\Documents\\GitHub\\utils\\build\\docs\\javadoc'
--doctitle 'utils 1.5.3 API'
+-doctitle 'utils 1.6.2 API'
 -notimestamp 
 -quiet 
--windowtitle 'utils 1.5.3 API'
+-windowtitle 'utils 1.6.2 API'
 'C:\\Users\\tommaso.pastorelli\\Documents\\GitHub\\utils\\src\\main\\java\\net\\tp\\Main.java'
 'C:\\Users\\tommaso.pastorelli\\Documents\\GitHub\\utils\\src\\main\\java\\net\\tp\\utils\\ArrayUtils.java'
 'C:\\Users\\tommaso.pastorelli\\Documents\\GitHub\\utils\\src\\main\\java\\net\\tp\\utils\\BooleanUtils.java'

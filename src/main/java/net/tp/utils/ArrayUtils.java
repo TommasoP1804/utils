@@ -325,8 +325,33 @@ public abstract class ArrayUtils {
 	 * @param <E> the type of the elements
 	 * @return {@code true} if the array is not empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated Use instead {@link #nonEmpty(Object[])}
 	 */
+	@Deprecated
 	public static <E> boolean isNotEmpty(E[] array) {
+		return !isNullOrEmpty(array);
+	}
+
+	/**
+	 * Checks if an array is not empty.
+	 *
+	 * @param array the array to check
+	 * @param <E> the type of the elements
+	 * @return {@code true} if the array is not empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static <E> boolean nonEmpty(E[] array) { return !isNullOrEmpty(array); }
+
+	/**
+	 * Checks if a byte-array is not null or empty.
+	 *
+	 * @param array the byte-array to check
+	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
+	 * @since 1.0.0
+	 * @deprecated Use instead {@link #nonEmpty(byte[])}
+	 */
+	@Deprecated
+	public static boolean isNotEmpty(byte[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -335,9 +360,9 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the byte-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
-	 * @since 1.0.0
+	 * @since 1.6.0
 	 */
-	public static boolean isNotEmpty(byte[] array) {
+	public static boolean nonEmpty(byte[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -347,8 +372,21 @@ public abstract class ArrayUtils {
 	 * @param array the short-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated Use instead {@link #nonEmpty(short[])}
 	 */
+	@Deprecated
 	public static boolean isNotEmpty(short[] array) {
+		return !isNullOrEmpty(array);
+	}
+
+	/**
+	 * Checks if a short-array is not null or empty.
+	 *
+	 * @param array the short-array to check
+	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean nonEmpty(short[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -358,8 +396,21 @@ public abstract class ArrayUtils {
 	 * @param array the int-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated Use instead {@link #nonEmpty(int[])}
 	 */
+	@Deprecated
 	public static boolean isNotEmpty(int[] array) {
+		return !isNullOrEmpty(array);
+	}
+
+	/**
+	 * Checks if an int-array is not null or empty.
+	 *
+	 * @param array the int-array to check
+	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean nonEmpty(int[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -369,8 +420,21 @@ public abstract class ArrayUtils {
 	 * @param array the long-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated Use instead {@link #nonEmpty(long[])}
 	 */
+	@Deprecated
 	public static boolean isNotEmpty(long[] array) {
+		return !isNullOrEmpty(array);
+	}
+
+	/**
+	 * Checks if a long-array is not null or empty.
+	 *
+	 * @param array the long-array to check
+	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean nonEmpty(long[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -380,8 +444,21 @@ public abstract class ArrayUtils {
 	 * @param array the float-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated Use instead {@link #nonEmpty(float[])}
 	 */
+	@Deprecated
 	public static boolean isNotEmpty(float[] array) {
+		return !isNullOrEmpty(array);
+	}
+
+	/**
+	 * Checks if a float-array is not null or empty.
+	 *
+	 * @param array the float-array to check
+	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean nonEmpty(float[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -391,8 +468,21 @@ public abstract class ArrayUtils {
 	 * @param array the double-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated Use instead {@link #nonEmpty(double[])}
 	 */
+	@Deprecated
 	public static boolean isNotEmpty(double[] array) {
+		return !isNullOrEmpty(array);
+	}
+
+	/**
+	 * Checks if a double-array is not null or empty.
+	 *
+	 * @param array the double-array to check
+	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean nonEmpty(double[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -402,8 +492,21 @@ public abstract class ArrayUtils {
 	 * @param array the char-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated Use instead {@link #nonEmpty(char[])}
 	 */
+	@Deprecated
 	public static boolean isNotEmpty(char[] array) {
+		return !isNullOrEmpty(array);
+	}
+
+	/**
+	 * Checks if a char-array is not null or empty.
+	 *
+	 * @param array the char-array to check
+	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean nonEmpty(char[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -413,8 +516,21 @@ public abstract class ArrayUtils {
 	 * @param array the boolean-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
 	 * @since 1.0.0
+	 * @deprecated Use instead {@link #nonEmpty(boolean[])}
 	 */
+	@Deprecated
 	public static boolean isNotEmpty(boolean[] array) {
+		return !isNullOrEmpty(array);
+	}
+
+	/**
+	 * Checks if a boolean-array is not null or empty.
+	 *
+	 * @param array the boolean-array to check
+	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
+	 * @since 1.6.0
+	 */
+	public static boolean nonEmpty(boolean[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -1408,7 +1524,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static <E> void reverse(E[] array, int startIndex, int endIndex) {
-		if (isNotEmpty(array)) {
+		if (nonEmpty(array)) {
 			int i = Math.max(startIndex, 0);
 
 			for (int j = Math.min(array.length, endIndex) - 1; j > i; ++i) {
@@ -1437,7 +1553,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void reverse(byte[] array, int startIndex, int endIndex) {
-		if (isNotEmpty(array)) {
+		if (nonEmpty(array)) {
 			int i = Math.max(startIndex, 0);
 
 			for (int j = Math.min(array.length, endIndex) - 1; j > i; ++i) {
@@ -1466,7 +1582,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void reverse(short[] array, int startIndex, int endIndex) {
-		if (isNotEmpty(array)) {
+		if (nonEmpty(array)) {
 			int i = Math.max(startIndex, 0);
 
 			for (int j = Math.min(array.length, endIndex) - 1; j > i; ++i) {
@@ -1495,7 +1611,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void reverse(int[] array, int startIndex, int endIndex) {
-		if (isNotEmpty(array)) {
+		if (nonEmpty(array)) {
 			int i = Math.max(startIndex, 0);
 
 			for (int j = Math.min(array.length, endIndex) - 1; j > i; ++i) {
@@ -1524,7 +1640,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void reverse(long[] array, int startIndex, int endIndex) {
-		if (isNotEmpty(array)) {
+		if (nonEmpty(array)) {
 			int i = Math.max(startIndex, 0);
 
 			for (int j = Math.min(array.length, endIndex) - 1; j > i; ++i) {
@@ -1553,7 +1669,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void reverse(float[] array, int startIndex, int endIndex) {
-		if (isNotEmpty(array)) {
+		if (nonEmpty(array)) {
 			int i = Math.max(startIndex, 0);
 
 			for (int j = Math.min(array.length, endIndex) - 1; j > i; ++i) {
@@ -1582,7 +1698,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void reverse(double[] array, int startIndex, int endIndex) {
-		if (isNotEmpty(array)) {
+		if (nonEmpty(array)) {
 			int i = Math.max(startIndex, 0);
 
 			for (int j = Math.min(array.length, endIndex) - 1; j > i; ++i) {
@@ -1611,7 +1727,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void reverse(char[] array, int startIndex, int endIndex) {
-		if (isNotEmpty(array)) {
+		if (nonEmpty(array)) {
 			int i = Math.max(startIndex, 0);
 
 			for (int j = Math.min(array.length, endIndex) - 1; j > i; ++i) {
@@ -1640,7 +1756,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void reverse(boolean[] array, int startIndex, int endIndex) {
-		if (isNotEmpty(array)) {
+		if (nonEmpty(array)) {
 			int i = Math.max(startIndex, 0);
 
 			for (int j = Math.min(array.length, endIndex) - 1; j > i; ++i) {
@@ -1668,7 +1784,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(Object[] array, int offset) {
-		if (isNotEmpty(array)) shift(array, 0, array.length, offset);
+		if (nonEmpty(array)) shift(array, 0, array.length, offset);
 	}
 
 	/**
@@ -1680,7 +1796,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(Object[] array, int startIndex, int endIndex, int offset) {
-		if (isNotEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
+		if (nonEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
 			if (startIndex < 0) startIndex = 0;
 			if (endIndex >= array.length) endIndex = array.length;
 
@@ -1717,7 +1833,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(byte[] array, int offset) {
-		if (isNotEmpty(array)) shift(array, 0, array.length, offset);
+		if (nonEmpty(array)) shift(array, 0, array.length, offset);
 	}
 
 	/**
@@ -1729,7 +1845,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(byte[] array, int startIndex, int endIndex, int offset) {
-		if (isNotEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
+		if (nonEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
 			if (startIndex < 0) startIndex = 0;
 			if (endIndex >= array.length) endIndex = array.length;
 
@@ -1766,7 +1882,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(short[] array, int offset) {
-		if (isNotEmpty(array)) shift(array, 0, array.length, offset);
+		if (nonEmpty(array)) shift(array, 0, array.length, offset);
 	}
 
 	/**
@@ -1778,7 +1894,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(short[] array, int startIndex, int endIndex, int offset) {
-		if (isNotEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
+		if (nonEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
 			if (startIndex < 0) startIndex = 0;
 			if (endIndex >= array.length) endIndex = array.length;
 
@@ -1815,7 +1931,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(int[] array, int offset) {
-		if (isNotEmpty(array)) shift(array, 0, array.length, offset);
+		if (nonEmpty(array)) shift(array, 0, array.length, offset);
 	}
 
 	/**
@@ -1827,7 +1943,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(int[] array, int startIndex, int endIndex, int offset) {
-		if (isNotEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
+		if (nonEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
 			if (startIndex < 0) startIndex = 0;
 			if (endIndex >= array.length) endIndex = array.length;
 
@@ -1863,7 +1979,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(long[] array, int offset) {
-		if (isNotEmpty(array)) shift(array, 0, array.length, offset);
+		if (nonEmpty(array)) shift(array, 0, array.length, offset);
 	}
 
 	/**
@@ -1875,7 +1991,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(long[] array, int startIndex, int endIndex, int offset) {
-		if (isNotEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
+		if (nonEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
 			if (startIndex < 0) startIndex = 0;
 			if (endIndex >= array.length) endIndex = array.length;
 
@@ -1912,11 +2028,11 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(float[] array, int offset) {
-		if (isNotEmpty(array)) shift(array, 0, array.length, offset);
+		if (nonEmpty(array)) shift(array, 0, array.length, offset);
 	}
 
 	public static void shift(float[] array, int startIndex, int endIndex, int offset) {
-		if (isNotEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
+		if (nonEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
 			if (startIndex < 0) startIndex = 0;
 			if (endIndex >= array.length) endIndex = array.length;
 
@@ -1953,7 +2069,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(double[] array, int offset) {
-		if (isNotEmpty(array)) shift(array, 0, array.length, offset);
+		if (nonEmpty(array)) shift(array, 0, array.length, offset);
 	}
 
 	/**
@@ -1965,7 +2081,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(double[] array, int startIndex, int endIndex, int offset) {
-		if (isNotEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
+		if (nonEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
 			if (startIndex < 0) startIndex = 0;
 			if (endIndex >= array.length) endIndex = array.length;
 
@@ -2002,7 +2118,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(char[] array, int offset) {
-		if (isNotEmpty(array)) shift(array, 0, array.length, offset);
+		if (nonEmpty(array)) shift(array, 0, array.length, offset);
 	}
 
 	/**
@@ -2014,7 +2130,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(char[] array, int startIndex, int endIndex, int offset) {
-		if (isNotEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
+		if (nonEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
 			if (startIndex < 0) startIndex = 0;
 			if (endIndex >= array.length) endIndex = array.length;
 
@@ -2051,7 +2167,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(boolean[] array, int offset) {
-		if (isNotEmpty(array)) shift(array, 0, array.length, offset);
+		if (nonEmpty(array)) shift(array, 0, array.length, offset);
 	}
 
 	/**
@@ -2063,7 +2179,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void shift(boolean[] array, int startIndex, int endIndex, int offset) {
-		if (isNotEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
+		if (nonEmpty(array) && startIndex < array.length - 1 && endIndex > 0) {
 			if (startIndex < 0) startIndex = 0;
 			if (endIndex >= array.length) endIndex = array.length;
 
@@ -2639,7 +2755,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void swap(short[] array, int offset1, int offset2, int len) {
-		if (isNotEmpty(array) && offset1 < array.length && offset2 < array.length) {
+		if (nonEmpty(array) && offset1 < array.length && offset2 < array.length) {
 			if (offset1 < 0) offset1 = 0;
 			if (offset2 < 0) offset2 = 0;
 
@@ -2679,7 +2795,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void swap(int[] array, int offset1, int offset2, int len) {
-		if (isNotEmpty(array) && offset1 < array.length && offset2 < array.length) {
+		if (nonEmpty(array) && offset1 < array.length && offset2 < array.length) {
 			if (offset1 < 0) offset1 = 0;
 			if (offset2 < 0) offset2 = 0;
 
@@ -2717,7 +2833,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void swap(long[] array, int offset1, int offset2, int len) {
-		if (isNotEmpty(array) && offset1 < array.length && offset2 < array.length) {
+		if (nonEmpty(array) && offset1 < array.length && offset2 < array.length) {
 			if (offset1 < 0) offset1 = 0;
 			if (offset2 < 0) offset2 = 0;
 
@@ -2755,7 +2871,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void swap(float[] array, int offset1, int offset2, int len) {
-		if (isNotEmpty(array) && offset1 < array.length && offset2 < array.length) {
+		if (nonEmpty(array) && offset1 < array.length && offset2 < array.length) {
 			if (offset1 < 0) offset1 = 0;
 			if (offset2 < 0) offset2 = 0;
 
@@ -2793,7 +2909,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void swap(double[] array, int offset1, int offset2, int len) {
-		if (isNotEmpty(array) && offset1 < array.length && offset2 < array.length) {
+		if (nonEmpty(array) && offset1 < array.length && offset2 < array.length) {
 			if (offset1 < 0) offset1 = 0;
 			if (offset2 < 0) offset2 = 0;
 
@@ -2831,7 +2947,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void swap(char[] array, int offset1, int offset2, int len) {
-		if (isNotEmpty(array) && offset1 < array.length && offset2 < array.length) {
+		if (nonEmpty(array) && offset1 < array.length && offset2 < array.length) {
 			if (offset1 < 0) offset1 = 0;
 			if (offset2 < 0) offset2 = 0;
 
@@ -2869,7 +2985,7 @@ public abstract class ArrayUtils {
 	 * @since 1.0.0
 	 */
 	public static void swap(boolean[] array, int offset1, int offset2, int len) {
-		if (isNotEmpty(array) && offset1 < array.length && offset2 < array.length) {
+		if (nonEmpty(array) && offset1 < array.length && offset2 < array.length) {
 			if (offset1 < 0) offset1 = 0;
 			if (offset2 < 0) offset2 = 0;
 
