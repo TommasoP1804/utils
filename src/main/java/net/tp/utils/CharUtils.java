@@ -10,11 +10,12 @@ import static java.util.Objects.nonNull;
  * @author Tommaso Pastorelli
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public abstract class CharUtils {
 	/**
 	 * The hexadecimal digits
 	 */
-	private static final char[] HEX_DIGITS = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+	public static final char[] HEX_DIGITS = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 	/**
 	 * The new-line character
 	 */

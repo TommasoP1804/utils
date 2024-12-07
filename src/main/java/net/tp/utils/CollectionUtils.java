@@ -3,8 +3,8 @@ package net.tp.utils;
 import java.util.*;
 import java.util.function.Supplier;
 
-import static java.util.Objects.*;
 import static net.tp.utils.MethodUtils.noOp;
+import static java.util.Objects.*;
 
 /**
  * Utility class for collections.
@@ -12,6 +12,7 @@ import static net.tp.utils.MethodUtils.noOp;
  * @author Tommaso Pastorelli
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public abstract class CollectionUtils {
 	/**
 	 * Checks if a given collection is null or empty.

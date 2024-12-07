@@ -11,6 +11,7 @@ import static java.util.Objects.requireNonNull;
  * @author Tommaso Pastorelli
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public abstract class ObjectUtils {
 	/**
 	 * Checks if all the given objects are null.

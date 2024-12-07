@@ -5,7 +5,13 @@ import java.util.function.Supplier;
 
 import static java.util.Objects.requireNonNull;
 
-public class PredicateUtils {
+/**
+ * Utility class for predicate.
+ * @author Tommaso Pastorelli
+ * @since 1.7.0
+ */
+@SuppressWarnings("unused")
+public abstract class PredicateUtils {
 	/**
 	 * Require that the given value satisfies the given predicate.
 	 * @param predicate the predicate to satisfy

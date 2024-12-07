@@ -14,6 +14,7 @@ import static java.util.Objects.requireNonNull;
  * @author Tommaso Pastorelli
  * @since 1.2.0
  */
+@SuppressWarnings("unused")
 public class Triple<L, M, R> implements Serializable {
 	/**
 	 * The left value.

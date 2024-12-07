@@ -16,6 +16,7 @@ import static java.util.stream.IntStream.range;
  * @author Tommaso Pastorelli
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public abstract class ArrayUtils {
 	/**
 	 * An empty array of {@code boolean} objects.
@@ -1260,7 +1261,7 @@ public abstract class ArrayUtils {
 	 */
 	public static long[] remove(long[] array, int... index) {
 		if (isNullOrEmpty(array)) return array;
-		return (long[]) remove((Object) array, index);
+		return remove(array, index);
 	}
 
 	/**

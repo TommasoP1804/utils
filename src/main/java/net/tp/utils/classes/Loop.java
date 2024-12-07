@@ -12,6 +12,7 @@ import static java.util.Objects.requireNonNull;
  * @author Tommaso Pastorelli
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public abstract class Loop {
 	public interface LoopTypes {}
 	public static class Break extends RuntimeException implements LoopTypes {}

@@ -30,6 +30,7 @@ import static java.util.Objects.requireNonNullElse;
  * @author Tommaso Pastorelli
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public class LocalMonthDayTime {
 	private final MonthDay monthDay;
 	private final LocalTime localTime;
@@ -520,7 +521,7 @@ public class LocalMonthDayTime {
 	 * @since 1.0.0
 	 */
 	public static LocalMonthDayTime parse(String s) {
-		if (isNull(s) || s.isEmpty() || s.isBlank()) return now();
+		if (isNull(s) || s.isBlank()) return now();
 
 		if (s.startsWith("--"))
 			return new LocalMonthDayTime(
@@ -533,9 +534,9 @@ public class LocalMonthDayTime {
 					LocalTime.parse(s.substring(7))
 			);
 		else return new LocalMonthDayTime(
-				MonthDay.parse(s.substring(0, 5), DateTimeFormatter.ofPattern("MM-dd")),
-				LocalTime.parse(s.substring(6))
-		);
+					MonthDay.parse(s.substring(0, 5), DateTimeFormatter.ofPattern("MM-dd")),
+					LocalTime.parse(s.substring(6))
+			);
 	}
 
 	/**
@@ -682,7 +683,7 @@ public class LocalMonthDayTime {
 				localTime
 		);
 	}
-	
+
 	private LocalMonthDayTime plusWithOverflow(LocalDate newDate, long hours, long minutes, long seconds, long nanos) {
 		if ((hours | minutes | seconds | nanos) == 0)
 			return new LocalMonthDayTime(MonthDay.from(newDate), localTime);

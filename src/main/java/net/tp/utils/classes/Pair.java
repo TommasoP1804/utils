@@ -17,6 +17,7 @@ import static java.util.Objects.requireNonNull;
  * @author Tommaso Pastorelli
  * @since 1.2.0
  */
+@SuppressWarnings("unused")
 public class Pair<L, R> implements Map.Entry<L, R>, Serializable {
 	/**
 	 * The left value (key).

@@ -12,6 +12,7 @@ import static java.util.Objects.isNull;
  * @author Tommaso Pastorelli
  * @since 1.0.0
  */
+@SuppressWarnings("unused")
 public abstract class NumberUtils {
 	/**
 	 * Checks if a given number is a non-decimal number.

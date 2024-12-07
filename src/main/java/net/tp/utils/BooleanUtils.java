@@ -11,6 +11,7 @@ import static java.util.Objects.*;
  * @author Tommaso Pastorelli
  * @since 1.5.0
  */
+@SuppressWarnings("unused")
 public abstract class BooleanUtils {
 	/**
 	 * Check if the given {@link Boolean} object is true.
