@@ -1,9 +1,9 @@
 -classpath 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\build\\classes\\java\\main;C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\build\\resources\\main'
 -d 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\build\\docs\\javadoc'
--doctitle 'utils 1.9.1 API'
+-doctitle 'utils 1.9.2 API'
 -notimestamp 
 -quiet 
--windowtitle 'utils 1.9.1 API'
+-windowtitle 'utils 1.9.2 API'
 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\Main.java'
 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\utils\\ArrayUtils.java'
 'C:\\Users\\Utente\\OneDrive\\Documenti\\GitHub\\Utils\\src\\main\\java\\net\\tp\\utils\\BooleanUtils.java'
