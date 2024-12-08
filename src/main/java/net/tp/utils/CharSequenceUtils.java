@@ -2587,4 +2587,63 @@ public abstract class CharSequenceUtils {
 		@SuppressWarnings("unchecked") T result = (T) sb.toString();
 		return result;
 	}
+
+	/**
+	 * Split a char sequence by a delimiter and make a {@link String#strip()}.
+	 * @param cs the char sequence to split
+	 * @param delimiter the delimiter
+	 * @param <T> the type of the char sequence
+	 * @return the split char sequence
+	 * @since 1.9.1
+	 */
+	public static <T extends CharSequence> T[] splitAndStrip(T cs, char delimiter) {
+		return splitAndStrip(cs, delimiter, 0);
+	}
+
+	/**
+	 * Split a char sequence by a delimiter and make a {@link String#strip()}.
+	 * @param cs the char sequence to split
+	 * @param delimiter the delimiter
+	 * @param limit the limit
+	 * @param <T> the type of the char sequence
+	 * @return the split char sequence
+	 * @since 1.9.1
+	 */
+	public static <T extends CharSequence> T[] splitAndStrip(T cs, char delimiter, int limit) {
+		return splitAndStrip(cs, delimiter, limit, false);
+	}
+
+	/**
+	 * Split a char sequence by a delimiter and make a {@link String#strip()}.
+	 * @param cs the char sequence to split
+	 * @param delimiter the delimiter
+	 * @param withDelimiters {@code true} to include the delimiters in the result
+	 * @param <T> the type of the char sequence
+	 * @return the split char sequence
+	 * @since 1.9.1
+	 */
+	public static <T extends CharSequence> T[] splitAndStrip(T cs, char delimiter, boolean withDelimiters) {
+		return splitAndStrip(cs, delimiter, 0, withDelimiters);
+	}
+
+	/**
+	 * Split a char sequence by a delimiter and make a {@link String#strip()}.
+	 * @param cs the char sequence to split
+	 * @param delimiter the delimiter
+	 * @param limit the limit
+	 * @param withDelimiters {@code true} to include the delimiters in the result
+	 * @param <T> the type of the char sequence
+	 * @return the split char sequence
+	 * @since 1.9.1
+	 */
+	public static <T extends CharSequence> T[] splitAndStrip(T cs, char delimiter, int limit, boolean withDelimiters) {
+		if (isNullOrEmpty(cs)) return null;
+		String[] split = Arrays.stream(withDelimiters
+				? cs.toString().splitWithDelimiters(String.valueOf(delimiter), limit)
+				: cs.toString().split(String.valueOf(delimiter), limit)
+		).map(String::strip).toArray(String[]::new);
+
+		@SuppressWarnings("unchecked") T[] result = (T[]) split;
+		return result;
+	}
 }
