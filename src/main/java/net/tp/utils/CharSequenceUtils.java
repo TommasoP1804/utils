@@ -2596,7 +2596,7 @@ public abstract class CharSequenceUtils {
 	 * @return the split char sequence
 	 * @since 1.9.1
 	 */
-	public static <T extends CharSequence> T[] splitAndStrip(T cs, char delimiter) {
+	public static <T extends CharSequence> T[] splitAndStrip(T cs, String delimiter) {
 		return splitAndStrip(cs, delimiter, 0);
 	}
 
@@ -2609,7 +2609,7 @@ public abstract class CharSequenceUtils {
 	 * @return the split char sequence
 	 * @since 1.9.1
 	 */
-	public static <T extends CharSequence> T[] splitAndStrip(T cs, char delimiter, int limit) {
+	public static <T extends CharSequence> T[] splitAndStrip(T cs, String delimiter, int limit) {
 		return splitAndStrip(cs, delimiter, limit, false);
 	}
 
@@ -2622,7 +2622,7 @@ public abstract class CharSequenceUtils {
 	 * @return the split char sequence
 	 * @since 1.9.1
 	 */
-	public static <T extends CharSequence> T[] splitAndStrip(T cs, char delimiter, boolean withDelimiters) {
+	public static <T extends CharSequence> T[] splitAndStrip(T cs, String delimiter, boolean withDelimiters) {
 		return splitAndStrip(cs, delimiter, 0, withDelimiters);
 	}
 
@@ -2636,11 +2636,11 @@ public abstract class CharSequenceUtils {
 	 * @return the split char sequence
 	 * @since 1.9.1
 	 */
-	public static <T extends CharSequence> T[] splitAndStrip(T cs, char delimiter, int limit, boolean withDelimiters) {
+	public static <T extends CharSequence> T[] splitAndStrip(T cs, String delimiter, int limit, boolean withDelimiters) {
 		if (isNullOrEmpty(cs)) return null;
 		String[] split = Arrays.stream(withDelimiters
-				? cs.toString().splitWithDelimiters(String.valueOf(delimiter), limit)
-				: cs.toString().split(String.valueOf(delimiter), limit)
+				? cs.toString().splitWithDelimiters(delimiter, limit)
+				: cs.toString().split(delimiter, limit)
 		).map(String::strip).toArray(String[]::new);
 
 		@SuppressWarnings("unchecked") T[] result = (T[]) split;
