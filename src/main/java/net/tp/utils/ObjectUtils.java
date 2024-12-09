@@ -58,17 +58,47 @@ public abstract class ObjectUtils {
 	}
 
 	/**
-	 * Checks if a given object is null, if it is return null, else another object.
+	 * Checks if a given object is null, if it is return null, else another object.<p><p>
+	 *
+	 * <p>WARNING: do NOT use this method to get element from a {@code null} object.<p>
+	 * AVOID THIS:
+	 * <pre>{@code
+	 * Object obj = null;
+	 * Object other = requireNullElse(obj, obj.getElement());
+	 * }</pre>
+	 * For this, use {@link #requireNullElseGet(Object, Supplier)} instead.
+	 * If used for that scoped, this method will throw a {@link NullPointerException}.
+	 * <p>Use instead for this:
+	 * <pre>{@code
+	 * Object obj = null;
+	 * Object obj2 = new Object();
+	 * Object other = requireNullElse(obj, obj2);
+	 * 	}</pre>
 	 *
 	 * @param obj the object to check and return if null
 	 * @param elseObj the object to return if the given object is not null
 	 * @param <T1> the type of the object to check
 	 * @param <T2> the type of the other object
 	 * @return {@code null} if the object is null, the other object otherwise
+	 * @throws NullPointerException if {@code obj} is null and {@code elseObj} is a sub-object of {@code obj}
 	 * @since 1.0.0
 	 */
 	public static <T1, T2> T2 requireNullElse(T1 obj, T2 elseObj) {
 		return isNull(obj) ? null : elseObj;
+	}
+
+	/**
+	 * Checks if a given object is null, if it is return null, else return the result of a supplier.
+	 *
+	 * @param obj the object to check
+	 * @param elseSupplier the supplier of the object to return if the given object is not null
+	 * @param <T1> the type of the object to check
+	 * @param <T2> the type of the object to return
+	 * @return {@code null} if the object is null, the object from the supplier otherwise
+	 * @since 1.9.3
+	 */
+	public static <T1, T2> T2 requireNullElseGet(T1 obj, Supplier<T2> elseSupplier) {
+		return isNull(obj) ? null : elseSupplier.get();
 	}
 
 	/**

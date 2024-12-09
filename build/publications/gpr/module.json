@@ -3,7 +3,7 @@
   "component": {
     "group": "net.tp",
     "module": "utils",
-    "version": "1.9.2",
+    "version": "1.9.3",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -25,13 +25,13 @@
       },
       "files": [
         {
-          "name": "utils-1.9.2.jar",
-          "url": "utils-1.9.2.jar",
-          "size": 62875,
-          "sha512": "937ee8ec02863010b3282946fe12e35f7d8a59edd97ae3aaaa18622be07db4a893c54e2968593eb23d2f6d9a019d571642b20bda38da5eb3a18192f20fa2e735",
-          "sha256": "4e41721bef1afc8e25617e59a2726a964f7af2ae0f20337b9a1df373ee6e1ea5",
-          "sha1": "323f457b512f8c5ced1a900b0434e8f6aec3a5ab",
-          "md5": "6efb597ba00b5b5b6fc29110db12e868"
+          "name": "utils-1.9.3.jar",
+          "url": "utils-1.9.3.jar",
+          "size": 62948,
+          "sha512": "5aa71bf937eebfab256120a583eeefb5cb59f8e39122d33d943b19f16b9d4d5c4160e3a70166bddef4538a92ad0f2b2c47bc08714dbd6dbceaf12c982c1dc29b",
+          "sha256": "dd3d5615eb7b3167653a4bb8ac874ba3e2fb198038fefe9c1d433613b065dd28",
+          "sha1": "54c2659072810edd0ad3a7c8e032753971d68f94",
+          "md5": "98ac8d13aa6ad15f4b8e276552aec383"
         }
       ]
     },
@@ -46,13 +46,13 @@
       },
       "files": [
         {
-          "name": "utils-1.9.2.jar",
-          "url": "utils-1.9.2.jar",
-          "size": 62875,
-          "sha512": "937ee8ec02863010b3282946fe12e35f7d8a59edd97ae3aaaa18622be07db4a893c54e2968593eb23d2f6d9a019d571642b20bda38da5eb3a18192f20fa2e735",
-          "sha256": "4e41721bef1afc8e25617e59a2726a964f7af2ae0f20337b9a1df373ee6e1ea5",
-          "sha1": "323f457b512f8c5ced1a900b0434e8f6aec3a5ab",
-          "md5": "6efb597ba00b5b5b6fc29110db12e868"
+          "name": "utils-1.9.3.jar",
+          "url": "utils-1.9.3.jar",
+          "size": 62948,
+          "sha512": "5aa71bf937eebfab256120a583eeefb5cb59f8e39122d33d943b19f16b9d4d5c4160e3a70166bddef4538a92ad0f2b2c47bc08714dbd6dbceaf12c982c1dc29b",
+          "sha256": "dd3d5615eb7b3167653a4bb8ac874ba3e2fb198038fefe9c1d433613b065dd28",
+          "sha1": "54c2659072810edd0ad3a7c8e032753971d68f94",
+          "md5": "98ac8d13aa6ad15f4b8e276552aec383"
         }
       ]
     },
@@ -66,13 +66,13 @@
       },
       "files": [
         {
-          "name": "utils-1.9.2-javadoc.jar",
-          "url": "utils-1.9.2-javadoc.jar",
-          "size": 217765,
-          "sha512": "2d71b2a54999cb43ece430e647ee8a476a92adb16f55627706288ade4fae52c0f0f48a44fd142911c1df2e84a598d1ad1671594ae73a42300f4ba3d154275c0e",
-          "sha256": "901e271548479e134567bddec5c064beba2bef46e05f5972e0aa02d9d40e390a",
-          "sha1": "e5d88350e139af578b80c2f0fe1bb86bc169fcd8",
-          "md5": "6cfaf674f84969786f3ecc6f3be7baf1"
+          "name": "utils-1.9.3-javadoc.jar",
+          "url": "utils-1.9.3-javadoc.jar",
+          "size": 218184,
+          "sha512": "73dd9cf8e54d693aea60d0793c0f3dff1406c23ce9c9f686c2eaaa791e4d2170187792ce483184d61e75f8d820ce126b14b31c0a8666661c8674a0d02f6241fe",
+          "sha256": "fd7d333e681f57d29ca7f71d8306fd95a6171e02a4d90bcdb3a640616fe345ce",
+          "sha1": "881072c7f5b22b7ef36c50c05fa71edb31591ca2",
+          "md5": "d9735894e3b16b9e1ff57d57d3017761"
         }
       ]
     },
@@ -86,13 +86,13 @@
       },
       "files": [
         {
-          "name": "utils-1.9.2-sources.jar",
-          "url": "utils-1.9.2-sources.jar",
-          "size": 39167,
-          "sha512": "ed4f508c62551821b2ef235e9a22c104afccee2e9f3dcda2214948350963add9054a6cb40c97209e812d06672fd9ffb7db7a0369e7080cbc138a3a68836535bd",
-          "sha256": "2d5695bf44f9d61d90cc45b5132a4055176b815720cd0c7871f0a7daa78410c6",
-          "sha1": "f0bed614b1f64897052eca99f76060c0561ae305",
-          "md5": "9127bbfacc82bd477ac8a57030537cf3"
+          "name": "utils-1.9.3-sources.jar",
+          "url": "utils-1.9.3-sources.jar",
+          "size": 39463,
+          "sha512": "1fa5c7e933aa1dac615ec1e7f855ee4dce8b8718ecafcd88ed609b9b11aa39482dfc9e6bf8e5d658d718564da0014ae89bff3f4c28ea461afc82743ce6af2980",
+          "sha256": "a62628e2b43ec8a2d78d1efb097bdb6b5c3e87c0ad111923f80576a680083402",
+          "sha1": "04905a58bdf3bd04a0582b67e8aec6ec71ea09e0",
+          "md5": "7a392d107cb1a1460ee63f6ac888ee73"
         }
       ]
     }
