@@ -20,6 +20,22 @@ public abstract class ObjectUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean allNull(Object... objects) {
+		if (isNull(objects)) return true;
+
+		for (Object obj : objects) if (!isNull(obj)) return false;
+		return true;
+	}
+
+	/**
+	 * Checks if all the given objects are null.
+	 * @param objects the objects to check
+	 * @return {@code true} if all the objects are null; {@code false} otherwise
+	 * @since 1.9.4
+	 */
+	public static <T> boolean allNull(Iterable<T> objects) {
+		if (isNull(objects)) throw new NullPointerException();
+		if (!objects.iterator().hasNext()) throw new IllegalArgumentException();
+
 		for (Object obj : objects) if (!isNull(obj)) return false;
 		return true;
 	}
@@ -31,6 +47,22 @@ public abstract class ObjectUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean anyNull(Object... objects) {
+		if (isNull(objects)) return true;
+
+		for (Object obj : objects) if (isNull(obj)) return true;
+		return false;
+	}
+
+	/**
+	 * Checks if any of the given objects is null.
+	 * @param objects the objects to check
+	 * @return {@code true} if any of the objects is null; {@code false} otherwise
+	 * @since 1.9.4
+	 */
+	public static <T> boolean anyNull(Iterable<T> objects) {
+		if (isNull(objects)) throw new NullPointerException();
+		if (!objects.iterator().hasNext()) throw new IllegalArgumentException();
+
 		for (Object obj : objects) if (isNull(obj)) return true;
 		return false;
 	}
@@ -42,6 +74,22 @@ public abstract class ObjectUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean allNonNull(Object... objects) {
+		if (isNull(objects)) return true;
+
+		for (Object obj : objects) if (isNull(obj)) return false;
+		return true;
+	}
+
+	/**
+	 * Checks if all the given objects are not null.
+	 * @param objects the objects to check
+	 * @return {@code true} if all the objects are not null; {@code false} otherwise
+	 * @since 1.9.4
+	 */
+	public static <T> boolean allNonNull(Iterable<T> objects) {
+		if (isNull(objects)) throw new NullPointerException();
+		if (!objects.iterator().hasNext()) throw new IllegalArgumentException();
+
 		for (Object obj : objects) if (isNull(obj)) return false;
 		return true;
 	}
@@ -53,6 +101,22 @@ public abstract class ObjectUtils {
 	 * @since 1.0.0
 	 */
 	public static boolean anyNonNull(Object... objects) {
+		if (isNull(objects)) return false;
+
+		for (Object obj : objects) if (!isNull(obj)) return true;
+		return false;
+	}
+
+	/**
+	 * Checks if any of the given objects is not null.
+	 * @param objects the objects to check
+	 * @return {@code true} if any of the objects is not null; {@code false} otherwise
+	 * @since 1.0.0
+	 */
+	public static <T> boolean anyNonNull(Iterable<T> objects) {
+		if (isNull(objects)) throw new NullPointerException();
+		if (!objects.iterator().hasNext()) throw new IllegalArgumentException();
+
 		for (Object obj : objects) if (!isNull(obj)) return true;
 		return false;
 	}
@@ -66,7 +130,7 @@ public abstract class ObjectUtils {
 	 * Object obj = null;
 	 * Object other = requireNullElse(obj, obj.getElement());
 	 * }</pre>
-	 * For this, use {@link #requireNullElseGet(Object, Supplier)} instead.
+	 * For this, use {@code isNull(obj) ? null : obj.getElement()} instead.
 	 * If used for that scoped, this method will throw a {@link NullPointerException}.
 	 * <p>Use instead for this:
 	 * <pre>{@code

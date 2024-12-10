@@ -51,7 +51,7 @@ public abstract class NumberUtils {
 	}
 
 	/**
-	 * Checks if a given number is a non-decimal number (also a double or a float with .0 is non-decimal number, for classBased see {@link NumberUtils#isNonDecimalNumber(Number, boolean)}).
+	 * Checks if a given number is a non-decimal number (also a double or a float with .0 is non-decimal number, for classBased see {@link NumberUtils#nonDecimalNumber(Number, boolean)}).
 	 *
 	 * @param number the number to check
 	 * @param <T> the type of the number
@@ -61,11 +61,11 @@ public abstract class NumberUtils {
 	 */
 	@Deprecated
 	public static <T extends Number> boolean isNonDecimalNumber(T number) {
-		return isNonDecimalNumber(number, false);
+		return nonDecimalNumber(number, false);
 	}
 
 	/**
-	 * Checks if a given number is a non-decimal number (also a double or a float with .0 is non-decimal number, for classBased see {@link NumberUtils#isNonDecimalNumber(Number, boolean)}).
+	 * Checks if a given number is a non-decimal number (also a double or a float with .0 is non-decimal number, for classBased see {@link NumberUtils#nonDecimalNumber(Number, boolean)}).
 	 *
 	 * @param number the number to check
 	 * @param <T> the type of the number
@@ -73,7 +73,7 @@ public abstract class NumberUtils {
 	 * @since 1.6.0
 	 */
 	public static <T extends Number> boolean nonDecimalNumber(T number) {
-		return isNonDecimalNumber(number, false);
+		return nonDecimalNumber(number, false);
 	}
 
 	/**
