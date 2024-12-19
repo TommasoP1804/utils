@@ -319,19 +319,6 @@ public abstract class ArrayUtils {
 		return isNull(array) || array.length == 0;
 	}
 
-	/**
-	 * Checks if an array is not empty.
-	 *
-	 * @param array the array to check
-	 * @param <E> the type of the elements
-	 * @return {@code true} if the array is not empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated Use instead {@link #nonEmpty(Object[])}
-	 */
-	@Deprecated
-	public static <E> boolean isNotEmpty(E[] array) {
-		return !isNullOrEmpty(array);
-	}
 
 	/**
 	 * Checks if an array is not empty.
@@ -348,35 +335,9 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the byte-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated Use instead {@link #nonEmpty(byte[])}
-	 */
-	@Deprecated
-	public static boolean isNotEmpty(byte[] array) {
-		return !isNullOrEmpty(array);
-	}
-
-	/**
-	 * Checks if a byte-array is not null or empty.
-	 *
-	 * @param array the byte-array to check
-	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	public static boolean nonEmpty(byte[] array) {
-		return !isNullOrEmpty(array);
-	}
-
-	/**
-	 * Checks if a short-array is not null or empty.
-	 *
-	 * @param array the short-array to check
-	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated Use instead {@link #nonEmpty(short[])}
-	 */
-	@Deprecated
-	public static boolean isNotEmpty(short[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -396,35 +357,9 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the int-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated Use instead {@link #nonEmpty(int[])}
-	 */
-	@Deprecated
-	public static boolean isNotEmpty(int[] array) {
-		return !isNullOrEmpty(array);
-	}
-
-	/**
-	 * Checks if an int-array is not null or empty.
-	 *
-	 * @param array the int-array to check
-	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	public static boolean nonEmpty(int[] array) {
-		return !isNullOrEmpty(array);
-	}
-
-	/**
-	 * Checks if a long-array is not null or empty.
-	 *
-	 * @param array the long-array to check
-	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated Use instead {@link #nonEmpty(long[])}
-	 */
-	@Deprecated
-	public static boolean isNotEmpty(long[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -444,35 +379,9 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the float-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated Use instead {@link #nonEmpty(float[])}
-	 */
-	@Deprecated
-	public static boolean isNotEmpty(float[] array) {
-		return !isNullOrEmpty(array);
-	}
-
-	/**
-	 * Checks if a float-array is not null or empty.
-	 *
-	 * @param array the float-array to check
-	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	public static boolean nonEmpty(float[] array) {
-		return !isNullOrEmpty(array);
-	}
-
-	/**
-	 * Checks if a double-array is not null or empty.
-	 *
-	 * @param array the double-array to check
-	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated Use instead {@link #nonEmpty(double[])}
-	 */
-	@Deprecated
-	public static boolean isNotEmpty(double[] array) {
 		return !isNullOrEmpty(array);
 	}
 
@@ -492,35 +401,9 @@ public abstract class ArrayUtils {
 	 *
 	 * @param array the char-array to check
 	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated Use instead {@link #nonEmpty(char[])}
-	 */
-	@Deprecated
-	public static boolean isNotEmpty(char[] array) {
-		return !isNullOrEmpty(array);
-	}
-
-	/**
-	 * Checks if a char-array is not null or empty.
-	 *
-	 * @param array the char-array to check
-	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	public static boolean nonEmpty(char[] array) {
-		return !isNullOrEmpty(array);
-	}
-
-	/**
-	 * Checks if a boolean-array is not null or empty.
-	 *
-	 * @param array the boolean-array to check
-	 * @return {@code true} if the array is not null or empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated Use instead {@link #nonEmpty(boolean[])}
-	 */
-	@Deprecated
-	public static boolean isNotEmpty(boolean[] array) {
 		return !isNullOrEmpty(array);
 	}
 

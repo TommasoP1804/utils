@@ -21,25 +21,6 @@ public abstract class NumberUtils {
 	 * @param classBased if the check should be based on the class of the number
 	 * @param <T> the type of the number
 	 * @return {@code true} if the number is a non-decimal number, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #nonDecimalNumber(Number, boolean)} instead
-	 */
-	@Deprecated
-	public static <T extends Number> boolean isNonDecimalNumber(T number, boolean classBased) {
-		if (number instanceof Integer || number instanceof Long || number instanceof Short || number instanceof Byte || number instanceof BigInteger)
-			return true;
-		if (number instanceof Double) return !classBased && ((Double) number) % 1 == 0;
-		if (number instanceof Float) return !classBased && ((Float) number) % 1 == 0;
-		return false;
-	}
-
-	/**
-	 * Checks if a given number is a non-decimal number.
-	 *
-	 * @param number the number to check
-	 * @param classBased if the check should be based on the class of the number
-	 * @param <T> the type of the number
-	 * @return {@code true} if the number is a non-decimal number, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	public static <T extends Number> boolean nonDecimalNumber(T number, boolean classBased) {
@@ -48,20 +29,6 @@ public abstract class NumberUtils {
 		if (number instanceof Double) return !classBased && ((Double) number) % 1 == 0;
 		if (number instanceof Float) return !classBased && ((Float) number) % 1 == 0;
 		return false;
-	}
-
-	/**
-	 * Checks if a given number is a non-decimal number (also a double or a float with .0 is non-decimal number, for classBased see {@link NumberUtils#nonDecimalNumber(Number, boolean)}).
-	 *
-	 * @param number the number to check
-	 * @param <T> the type of the number
-	 * @return {@code true} if the number is a non-decimal number, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #nonDecimalNumber(Number)} instead
-	 */
-	@Deprecated
-	public static <T extends Number> boolean isNonDecimalNumber(T number) {
-		return nonDecimalNumber(number, false);
 	}
 
 	/**

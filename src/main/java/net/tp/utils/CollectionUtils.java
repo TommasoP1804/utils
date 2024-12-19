@@ -3,8 +3,8 @@ package net.tp.utils;
 import java.util.*;
 import java.util.function.Supplier;
 
-import static net.tp.utils.MethodUtils.noOp;
 import static java.util.Objects.*;
+import static net.tp.utils.MethodUtils.noOp;
 
 /**
  * Utility class for collections.
@@ -40,36 +40,10 @@ public abstract class CollectionUtils {
 	 *
 	 * @param collection the collection to check
 	 * @return {@code true} if the collection is not null and not empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #nonEmpty(Collection)} instead
-	 */
-	@Deprecated
-	public static boolean isNotEmpty(Collection<?> collection) {
-		return !isNullOrEmpty(collection);
-	}
-
-
-	/**
-	 * Checks if a given collection is not null and not empty.
-	 *
-	 * @param collection the collection to check
-	 * @return {@code true} if the collection is not null and not empty, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	public static boolean nonEmpty(Collection<?> collection) {
 		return !isNullOrEmpty(collection);
-	}
-
-	/**
-	 * Checks if a given map is not null and not empty.
-	 * @param map the map to check
-	 * @return {@code true} if the map is not null and not empty, {@code false} otherwise
-	 * @since 1.3.0
-	 * @deprecated use {@link #nonEmpty(Map)} instead
-	 */
-	@Deprecated
-	public static boolean isNotEmpty(Map<?, ?> map) {
-		return !isNullOrEmpty(map);
 	}
 
 	/**

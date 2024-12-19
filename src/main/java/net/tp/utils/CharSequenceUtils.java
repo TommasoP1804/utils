@@ -212,37 +212,10 @@ public abstract class CharSequenceUtils {
 	 * @param cs the string to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if the string is not null, not empty, and not only contains whitespace, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #nonBlank(CharSequence)} instead
-	 */
-	@Deprecated
-	public static <T extends CharSequence> boolean isNotBlank(T cs) {
-		return !isNullOrBlank(cs);
-	}
-
-	/**
-	 * Checks if a given string is not null, not empty, and not only contains whitespace.
-	 *
-	 * @param cs the string to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if the string is not null, not empty, and not only contains whitespace, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	public static <T extends CharSequence> boolean nonBlank(T cs) {
 		return !isNullOrBlank(cs);
-	}
-
-	/**
-	 * Checks if given char sequences is all null or blank.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are all null or blank, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allNullOrBlank(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllNullOrBlank(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isNullOrBlank);
 	}
 
 	/**
@@ -262,41 +235,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is blank, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyNullOrBlank(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyNullOrBlank(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNullOrBlank);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is blank.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is blank, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyNullOrBlank(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNullOrBlank);
-	}
-
-	/**
-	 * Checks if given char sequences is blank and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is null or blank, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachNullOrBlank(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachNullOrBlank(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isNullOrBlank(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -320,19 +263,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are all not null or blank, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allNonBlank(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllNotBlank(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::nonBlank);
-	}
-
-	/**
-	 * Checks if given char sequences is all not null or blank.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are all not null or blank, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -345,39 +275,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is not blank, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyNonBlank(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyNotBlank(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::nonBlank);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is not blank.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is not blank, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyNonBlank(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::nonBlank);
-	}
-
-	/**
-	 * Checks if given char sequences is not blank and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is not null or blank, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachNonBlank(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachNotBlank(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) result[i] = nonBlank(css[i]);
-		return result;
 	}
 
 	/**
@@ -412,37 +314,10 @@ public abstract class CharSequenceUtils {
 	 * @param cs the char sequence to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if the char sequence is not null and not empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #nonEmpty(CharSequence)} instead
-	 */
-	@Deprecated
-	public static <T extends CharSequence> boolean isNotEmpty(T cs) {
-		return !isNullOrEmpty(cs);
-	}
-
-	/**
-	 * Checks if a given char sequence is not null and not empty.
-	 *
-	 * @param cs the char sequence to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if the char sequence is not null and not empty, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	public static <T extends CharSequence> boolean nonEmpty(T cs) {
 		return !isNullOrEmpty(cs);
-	}
-
-	/**
-	 * Checks if given char sequences is all null or empty.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are all null or empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allNullOrEmpty(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllNullOrEmpty(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isNullOrEmpty);
 	}
 
 	/**
@@ -462,41 +337,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyNullOrEmpty(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyNullOrEmpty(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNullOrEmpty);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is empty.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is empty, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyNullOrEmpty(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNullOrEmpty);
-	}
-
-	/**
-	 * Checks if given char sequences is null or empty and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is null or empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachNullOrEmpty(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachNullOrEmpty(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isNullOrEmpty(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -520,19 +365,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are all empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allEmpty(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllEmpty(T... css) {
-		return Arrays.stream(css).allMatch(CharSequence::isEmpty);
-	}
-
-	/**
-	 * Checks if given char sequences is all empty.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are all empty, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -545,41 +377,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyEmpty(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyEmpty(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequence::isEmpty);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is empty.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is empty, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyEmpty(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequence::isEmpty);
-	}
-
-	/**
-	 * Checks if given char sequences is empty and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachEmpty(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachEmpty(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = css[i].isEmpty();
-		}
-		return result;
 	}
 
 	/**
@@ -603,19 +405,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are all not null or empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allNonEmpty(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllNotEmpty(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::nonEmpty);
-	}
-
-	/**
-	 * Checks if given char sequences is all not null or empty.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are all not null or empty, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -628,41 +417,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is not empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyNonEmpty(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyNotEmpty(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::nonEmpty);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is not empty.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is not empty, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyNonEmpty(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::nonEmpty);
-	}
-
-	/**
-	 * Checks if given char sequences is not empty and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is not empty, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachNonEmpty(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachNotEmpty(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = nonEmpty(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -696,19 +455,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are all lower case, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allLowerCase(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllLowerCase(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isLowerCase);
-	}
-
-	/**
-	 * Checks if given char sequences is all lower case.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are all lower case, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -721,41 +467,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is lower case, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyLowerCase(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyLowerCase(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isLowerCase);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is lower case.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is lower case, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyLowerCase(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isLowerCase);
-	}
-
-	/**
-	 * Checks if given char sequences is lower case and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is lower case, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachLowerCase(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachLowerCase(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isLowerCase(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -790,19 +506,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are all upper case, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allUpperCase(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllUpperCase(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isUpperCase);
-	}
-
-	/**
-	 * Checks if given char sequences is all upper case.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are all upper case, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -815,41 +518,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is upper case, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyUpperCase(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyUpperCase(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isUpperCase);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is upper case.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is upper case, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyUpperCase(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isUpperCase);
-	}
-
-	/**
-	 * Checks if given char sequences is upper case and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is upper case, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachUpperCase(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachUpperCase(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isUpperCase(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -884,39 +557,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are mixed case, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allMixedCase(CharSequence...)} instead
-	 */
-	@SafeVarargs
-	@Deprecated
-	public static <T extends CharSequence> boolean isAllMixedCase(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isMixedCase);
-	}
-
-	/**
-	 * Checks if given char sequences is mixed case.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are mixed case, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean allMixedCase(T... css) {
 		return Arrays.stream(css).allMatch(CharSequenceUtils::isMixedCase);
-	}
-
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is mixed case.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is mixed case, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyMixedCase(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyMixedCase(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isMixedCase);
 	}
 
 	/**
@@ -929,23 +574,6 @@ public abstract class CharSequenceUtils {
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyMixedCase(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isMixedCase);
-	}
-
-	/**
-	 * Checks if given char sequences is mixed case and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is mixed case, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachMixedCase(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachMixedCase(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isMixedCase(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -981,19 +609,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are alphabetic, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allAlphabetic(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllAlphabetic(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphabetic);
-	}
-
-	/**
-	 * Checks if given char sequences is alphabetic.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are alphabetic, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -1007,40 +622,10 @@ public abstract class CharSequenceUtils {
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is alphabetic, {@code false} otherwise
 	 * @since 1.0.0
-	 * @deprecated use {@link #anyAlphabetic(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyAlphabetic(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphabetic);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is alphabetic.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is alphabetic, {@code false} otherwise
-	 * @since 1.0.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyAlphabetic(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphabetic);
-	}
-
-	/**
-	 * Checks if given char sequences is alphabetic and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphabetic, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachAlphabetic(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachAlphabetic(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isAlphabetic(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -1075,19 +660,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are alphabetic or space, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allAlphabeticSpace(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllAlphabeticSpace(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphabeticSpace);
-	}
-
-	/**
-	 * Checks if given char sequences is alphabetic or space.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are alphabetic or space, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -1101,40 +673,10 @@ public abstract class CharSequenceUtils {
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is alphabetic or space, {@code false} otherwise
 	 * @since 1.0.0
-	 * @deprecated use {@link #anyAlphabeticSpace(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyAlphabeticSpace(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphabeticSpace);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is alphabetic or space.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is alphabetic or space, {@code false} otherwise
-	 * @since 1.0.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyAlphabeticSpace(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphabeticSpace);
-	}
-
-	/**
-	 * Checks if given char sequences is alphabetic or space and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphabetic or space, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachAlphabeticSpace(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachAlphabeticSpace(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isAlphabeticSpace(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -1169,19 +711,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are alphanumeric, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allAlphanumeric(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllAlphanumeric(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphanumeric);
-	}
-
-	/**
-	 * Checks if given char sequences is alphanumeric.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are alphanumeric, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -1194,41 +723,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is alphanumeric, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyAlphanumeric(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyAlphanumeric(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphanumeric);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is alphanumeric.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is alphanumeric, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyAlphanumeric(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphanumeric);
-	}
-
-	/**
-	 * Checks if given char sequences is alphanumeric and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphanumeric, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachAlphanumeric(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachAlphanumeric(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isAlphanumeric(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -1263,19 +762,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are alphanumeric or space, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allAlphanumericSpace(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllAlphanumericSpace(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isAlphanumericSpace);
-	}
-
-	/**
-	 * Checks if given char sequences is alphanumeric or space.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are alphanumeric or space, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -1288,41 +774,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is alphanumeric or space, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyAlphanumericSpace(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyAlphanumericSpace(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphanumericSpace);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is alphanumeric or space.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is alphanumeric or space, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyAlphanumericSpace(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isAlphanumericSpace);
-	}
-
-	/**
-	 * Checks if given char sequences is alphanumeric or space and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is alphanumeric or space, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachAlphanumericSpace(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachAlphanumericSpace(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isAlphanumericSpace(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -1357,19 +813,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are numeric, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allNumeric(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllNumeric(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isNumeric);
-	}
-
-	/**
-	 * Checks if given char sequences is numeric.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are numeric, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -1382,41 +825,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is numeric, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyNumeric(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyNumeric(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNumeric);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is numeric.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is numeric, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyNumeric(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNumeric);
-	}
-
-	/**
-	 * Checks if given char sequences is numeric and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is numeric, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachNumeric(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachNumeric(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isNumeric(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -1451,19 +864,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are numeric or space, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allNumericSpace(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllNumericSpace(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isNumericSpace);
-	}
-
-	/**
-	 * Checks if given char sequences is numeric or space.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are numeric or space, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -1476,41 +876,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is numeric or space, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyNumericSpace(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyNumericSpace(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNumericSpace);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is numeric or space.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is numeric or space, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyNumericSpace(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isNumericSpace);
-	}
-
-	/**
-	 * Checks if given char sequences is numeric or space and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is numeric or space, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachNumericSpace(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachNumericSpace(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isNumericSpace(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -1545,19 +915,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are valid emails, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allEmail(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllEmail(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isEmail);
-	}
-
-	/**
-	 * Checks if given char sequences is a valid email.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are valid emails, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -1570,41 +927,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is a valid email, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyEmail(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyEmail(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isEmail);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is a valid email.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is a valid email, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyEmail(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isEmail);
-	}
-
-	/**
-	 * Checks if given char sequences is a valid email and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is a valid email, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachEmail(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachEmail(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isEmail(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -1639,19 +966,6 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if all char sequences are valid URLs, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #allURL(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAllURL(T... css) {
-		return Arrays.stream(css).allMatch(CharSequenceUtils::isURL);
-	}
-
-	/**
-	 * Checks if given char sequences is a valid URL.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if all char sequences are valid URLs, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
@@ -1664,41 +978,11 @@ public abstract class CharSequenceUtils {
 	 * @param css the char sequences to check
 	 * @param <T> the type of the char sequence
 	 * @return {@code true} if at least one char sequence is a valid URL, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #anyURL(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean isAnyURL(T... css) {
-		return Arrays.stream(css).anyMatch(CharSequenceUtils::isURL);
-	}
-
-	/**
-	 * Checks if in the given char sequences there is at least one char sequence is a valid URL.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return {@code true} if at least one char sequence is a valid URL, {@code false} otherwise
 	 * @since 1.6.0
 	 */
 	@SafeVarargs
 	public static <T extends CharSequence> boolean anyURL(T... css) {
 		return Arrays.stream(css).anyMatch(CharSequenceUtils::isURL);
-	}
-
-	/**
-	 * Checks if given char sequences is a valid URL and put the result in an array.
-	 * @param css the char sequences to check
-	 * @param <T> the type of the char sequence
-	 * @return an array of booleans where each element is {@code true} if the corresponding char sequence is a valid URL, {@code false} otherwise
-	 * @since 1.0.0
-	 * @deprecated use {@link #eachURL(CharSequence...)} instead
-	 */
-	@SafeVarargs @Deprecated
-	public static <T extends CharSequence> boolean[] isEachURL(T... css) {
-		boolean[] result = new boolean[requireNonNull(css).length];
-		for (int i = 0; i < css.length; i++) {
-			result[i] = isURL(css[i]);
-		}
-		return result;
 	}
 
 	/**
@@ -2587,6 +1871,7 @@ public abstract class CharSequenceUtils {
 		@SuppressWarnings("unchecked") T result = (T) sb.toString();
 		return result;
 	}
+
 
 	/**
 	 * Split a char sequence by a delimiter and make a {@link String#strip()}.
